@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color:#2997D8;">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color:#2997D8; border-bottom: solid 1px white">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <h2 style="color:white;" >Seeker</h2>
@@ -20,10 +20,9 @@
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},
-  class: "dropdown-item" %>
+              <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
