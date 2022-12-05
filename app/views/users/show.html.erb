@@ -2,6 +2,13 @@
 <h2>My account page</h2>
 
 
+<% if @user.avatar.attached? %>
+  <%= cl_image_tag @user.avatar.key, height: 300, width: 300, crop: :fill, class:"round" %>
+<% else %>
+  <img class="round" style="height: 300px; width: 300px;"src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
+<% end %>
+
+
 
 <%= @user.first_name %>
 <%= @user.last_name %>

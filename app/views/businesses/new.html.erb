@@ -1,0 +1,14 @@
+ <div class="container">
+  <h1>New business</h1>
+  <div class="container card border p-3">
+    <%= simple_form_for(@business) do |f|%>
+    <%= f.input :name %>
+    <%= f.input :category, collection: @category_list %>
+    <%= f.input :address %>
+    <%= f.input :opening_time, as: :time, html5: true %>
+    <%= f.input :closing_time, as: :time, html5: true %>
+    <%= f.input :description %>
+    <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
+    <% end %>
+  </div>
+ </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_210451) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_223525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,9 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_210451) do
     t.time "opening_time"
     t.time "closing_time"
     t.string "category"
-    t.boolean "open"
+    t.boolean "open", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
