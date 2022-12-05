@@ -1,0 +1,19 @@
+
+<div>
+  <div style="width:350px; height:800px; background-color: white">
+
+  <% if current_user.avatar.attached? %>
+    <%= cl_image_tag current_user.avatar.key, height: 200, width: 200, crop: :fill, class:"round" %>
+  <% else %>
+    <img class="round" style="height: 200px; width: 200px;"src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
+  <% end %>
+
+  <%= current_user.first_name %>
+  <%= current_user.last_name %>
+
+  </div>
+
+  <div>
+    
+  </div>
+</div>

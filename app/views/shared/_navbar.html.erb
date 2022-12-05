@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color:#2997D8; border-bottom: solid 1px white">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
-      <h2 style="color:white;" >Seeker</h2>
+      <h2 style="font-weight: bold; color:white;" >Seeker</h2>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,11 +14,12 @@
           <li class="nav-item active">
             <%= link_to "Home", "/", class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
           <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% if current_user.avatar.attached? %>
+              <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= image_tag "https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
@@ -26,6 +27,9 @@
             </div>
           </li>
         <% else %>
+          <li class="nav-item">
+            <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
