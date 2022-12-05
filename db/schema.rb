@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_203818) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_210451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,66 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_203818) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "businesses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "address"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.string "category"
+    t.boolean "open"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_businesses_on_user_id"
+  end
+
+  create_table "itineraries", force: :cascade do |t|
+    t.string "name"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_itineraries", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "itinerary_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itinerary_id"], name: "index_product_itineraries_on_itinerary_id"
+    t.index ["product_id"], name: "index_product_itineraries_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "business_id", null: false
+    t.string "name"
+    t.boolean "availability"
+    t.float "price"
+    t.string "brand"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_products_on_business_id"
+  end
+
+  create_table "saved_itineraries", force: :cascade do |t|
+    t.date "date"
+    t.bigint "user_id", null: false
+    t.bigint "itinerary_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itinerary_id"], name: "index_saved_itineraries_on_itinerary_id"
+    t.index ["user_id"], name: "index_saved_itineraries_on_user_id"
+  end
+
+  create_table "stops", force: :cascade do |t|
+    t.bigint "itinerary_id", null: false
+    t.string "name"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itinerary_id"], name: "index_stops_on_itinerary_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name"
@@ -58,4 +118,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_203818) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "businesses", "users"
+  add_foreign_key "product_itineraries", "itineraries"
+  add_foreign_key "product_itineraries", "products"
+  add_foreign_key "products", "businesses"
+  add_foreign_key "saved_itineraries", "itineraries"
+  add_foreign_key "saved_itineraries", "users"
+  add_foreign_key "stops", "itineraries"
 end
