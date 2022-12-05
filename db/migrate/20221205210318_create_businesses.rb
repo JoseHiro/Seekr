@@ -7,7 +7,7 @@ class CreateBusinesses < ActiveRecord::Migration[7.0]
       t.time :opening_time
       t.time :closing_time
       t.string :category
-      t.boolean :open
+      t.boolean :open, default: false
 
       t.timestamps
     end

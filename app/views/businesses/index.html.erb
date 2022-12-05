@@ -1,0 +1,13 @@
+<div class="container">
+  <%@businesses.each do |business| %>
+    <div class="card border p-3">
+      <p>Name: <%= business.name %></p>
+      <p>Address: <%= business.address %></p>
+      <p>Opening time: <%= business.opening_time %></p>
+      <p>Closing time:<%= business.closing_time %></p>
+      <p>Category: <%= business.category %></p>
+      <p>Description: <%= business.description %></p>
+      <p>Status: <%= business.open %></p>
+    </div>
+  <% end %>
+</div>
