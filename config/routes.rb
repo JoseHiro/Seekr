@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :businesses do
     resources :products
   end
+
+  get "/products", to: "products#list_all"
+  get "/products/:id", to: "product#show_selected"
 end

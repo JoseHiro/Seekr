@@ -1,0 +1,12 @@
+<div class = "card d-flex">
+  <div><img src=# /></div>
+  <div>
+    <h4><%= product.name  %></h4>
+    <p><i class="fa-solid fa-star"></i>Brand: <%= product.brand%></p>
+    <p><i class="fa-solid fa-circle-question"></i> Category :<%= product.category %></p>
+    <p><i class="fa-solid fa-tag"></i>Price: £<%= product.price.round%>
+  <div>
+  <div>
+    <%= link_to "See item!",  product_path(product), class="btn btn-dark"%>
+  </div>
+</div>
