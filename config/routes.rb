@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get "/products", to: "products#list_all"
   get "/products/:id", to: "product#show_selected"
+  resources :itineraries, only: [:new, :update, :delete]
 end

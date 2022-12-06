@@ -20,16 +20,43 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def edit
+    @business = Business.find(params[:id])
+  end
+
   def update
     @business = Business.find(params[:id])
+    if @business.update(business_params)
+      redirect_to business_path(@business)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def delete
     @business = Business.find(params[:id])
+    @business.delete
+    redirect_to businesses_path
   end
 
   def index
-    @businesses = Business.all
+    # @businesses = Business.all
+
+    # search by shop category
+    if params[:query].present? && params[:address].present?
+      businesses = Business.where("address ILIKE ?", "%#{params[:address]}%")
+      @businesses = businesses.where(
+        "category ILIKE ?", "%#{params[:query]}%"
+      )
+    elsif params[:query].present? && !params[:address].present?
+      @businesses = Business.where(
+        "category ILIKE ?", "%#{params[:query]}%"
+      )
+    elsif !params[:query].present? && params[:address].present?
+      @businesses = Business.where("address ILIKE ?", "%#{params[:address]}%")
+    else
+      @businesses = Business.all
+    end
   end
 
   def show
