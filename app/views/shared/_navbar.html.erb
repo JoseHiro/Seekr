@@ -40,24 +40,12 @@
   <div>
     <%# if it's not the langing page, put the search engine in the navbar %>
     <% if controller_name != "pages" && action_name != "home" %>
-    <%= form_with url: businesses_path, method: :get, class: "" do %>
-      <%= text_field_tag :query,
-                          params[:query],
-                          class: "form-control",
-                          style:"border-radius: 10px",
-                          placeholder: "Seek a product.."
-                          %>
-      <div class="d-flex">
-      <%= text_field_tag :address,
-                          params[:address],
-                          class: "form-control",
-                          style:"border-radius: 10px",
-                          placeholder: "Add location"
-                          %>
-
-      <%= button_tag type: 'submit', class:"btn" do %>
-        <i class="fa-solid fa-magnifying-glass"></i>
-      <% end %>
+    <%= simple_form_for :filters, url: businesses_path, method: :get do |f| %>
+        <%= f.input :category %>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+        <%= button_tag type: 'submit', class:"btn" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       </div>
     <% end %>
     <% end %>
