@@ -43,17 +43,21 @@ class BusinessesController < ApplicationController
     # @businesses = Business.all
 
     # search by shop category
-    if params[:query].present? && params[:address].present?
-      businesses = Business.where("address ILIKE ?", "%#{params[:address]}%")
+    category = params[:filters][:category]
+    address = params[:filters][:address]
+    if !(category == "") && !(address == "")
+      businesses = Business.where("address ILIKE ?", "%#{address}%")
       @businesses = businesses.where(
-        "category ILIKE ?", "%#{params[:query]}%"
+        "category ILIKE ?", "%#{category}%"
       )
-    elsif params[:query].present? && !params[:address].present?
+    elsif !(address == "")
+      raise
       @businesses = Business.where(
-        "category ILIKE ?", "%#{params[:query]}%"
+        "address ILIKE ?", "%#{address}%"
       )
-    elsif !params[:query].present? && params[:address].present?
-      @businesses = Business.where("address ILIKE ?", "%#{params[:address]}%")
+    elsif !(category == "")
+      raise
+      @businesses = Business.where("address ILIKE ?", "%#{address}%")
     else
       @businesses = Business.all
     end
