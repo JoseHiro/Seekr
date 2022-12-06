@@ -22,16 +22,8 @@
   </div>
 
   <div>
-    <div class="ms-3 white" style="width: 800px; height: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-      <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-                          params[:query],
-                          class: "form-control",
-                          placeholder: "Find by category",
-                          style:"width: 400px"%>
-
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
+    <div class="ms-3 white" style="height: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+      
 
       <%# <h1>My route</h1> %>
     </div>
