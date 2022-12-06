@@ -20,12 +20,21 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def edit
+    @business = Business.find(params[:id])
+  end
+
   def update
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
+    if @business.update(business_params)
+      redirect_to business_path(@business)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def delete
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
   def index
@@ -33,7 +42,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
   private
