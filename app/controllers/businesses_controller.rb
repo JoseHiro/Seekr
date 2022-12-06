@@ -35,6 +35,8 @@ class BusinessesController < ApplicationController
 
   def delete
     @business = Business.find(params[:id])
+    @business.delete
+    redirect_to businesses_path
   end
 
   def index
