@@ -38,16 +38,18 @@
     </div>
   </div>
   <div>
+    <%# if it's not the langing page, put the search engine in the navbar %>
+    <% if controller_name != "pages" && action_name != "home" %>
     <%= form_with url: businesses_path, method: :get, class: "" do %>
-      <%= text_field_tag :query1,
-                          params[:query1],
+      <%= text_field_tag :query,
+                          params[:query],
                           class: "form-control",
                           style:"border-radius: 10px",
                           placeholder: "Seek a product.."
                           %>
       <div class="d-flex">
-      <%= text_field_tag :query1,
-                          params[:query1],
+      <%= text_field_tag :address,
+                          params[:address],
                           class: "form-control",
                           style:"border-radius: 10px",
                           placeholder: "Add location"
@@ -57,6 +59,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       <% end %>
       </div>
+    <% end %>
     <% end %>
   </div>
 </div>
