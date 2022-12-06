@@ -1,9 +1,12 @@
 <div style="background-color: #2997D8; height: 600px; " class="d-flex justify-content-center">
   <div>
     <h1 style="font-weight: bold; color:white; margin-top: 200px ">Find anything on the highstreet</h1>
-    <form action="">
-    <input type="text">
-    <input type="submit" value="Seek" class="btn btn-light">
-    </form>
+    <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+                        params[:query],
+                        class: "form-control",
+                        placeholder: "Find by category(example)" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
   </div>
 </div>

@@ -30,6 +30,15 @@ class BusinessesController < ApplicationController
 
   def index
     @businesses = Business.all
+
+
+
+    # search by shop category
+    if params[:query].present?
+      @businesses = Business.where("category ILIKE ?", "%#{params[:query]}%")
+    else
+      @businesses = Business.all
+    end
   end
 
   def show

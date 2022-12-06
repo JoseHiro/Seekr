@@ -1,19 +1,39 @@
 
-<div>
-  <div style="width:350px; height:800px; background-color: white">
+<div class="d-flex">
+  <div  style="box-shadow: 0 0 10px rgba(0,0,0,0.2); width:200px; height:800px; background-color: white; text-align: center">
 
-  <% if current_user.avatar.attached? %>
-    <%= cl_image_tag current_user.avatar.key, height: 200, width: 200, crop: :fill, class:"round" %>
-  <% else %>
-    <img class="round" style="height: 200px; width: 200px;"src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
-  <% end %>
+    <% if current_user.avatar.attached? %>
+      <%= cl_image_tag current_user.avatar.key, height: 150, width: 150, crop: :fill, class:"mt-4 round" %>
+    <% else %>
+      <img class="mt-4 round" style="height: 200px; width: 200px;" src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
+    <% end %>
+    <br>
+    <div class="mt-3">
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+    </div>
 
-  <%= current_user.first_name %>
-  <%= current_user.last_name %>
+    <div class="mt-4 ms-4" style="text-align: left">
+      <%= link_to "My page", user_path(current_user), class:"mt-1 btn btn-light", style:"margin-left:0" %>
+      <button class="mt-1 btn btn-light">Business</button>
+      <button class="mt-1 btn btn-light">History</button>
+    </div>
 
   </div>
 
   <div>
-    
+    <div class="ms-3 white" style="width: 800px; height: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+      <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+                          params[:query],
+                          class: "form-control",
+                          placeholder: "Find by category",
+                          style:"width: 400px"%>
+
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+
+      <%# <h1>My route</h1> %>
+    </div>
   </div>
 </div>
