@@ -26,17 +26,17 @@ class BusinessesController < ApplicationController
 
   def update
     @business = Business.find(params[:id])
+
     if @business.update(business_params)
       redirect_to business_path(@business)
     else
       render :edit, status: :unprocessable_entity
     end
+
   end
 
   def delete
     @business = Business.find(params[:id])
-    @business.delete
-    redirect_to businesses_path
   end
 
   def index
