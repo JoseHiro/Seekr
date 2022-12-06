@@ -1,0 +1,55 @@
+<h1><%@product.name%></h1>
+<div class="d-flex justify-content-center" style="border-radius: 15px; width 100%; height:450px">
+  <% photo_url = "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg"%>
+  <div style='width: 600px; height: 400px; border-radius: 15px 0px 0px 15px;' >
+    <%= image_tag (photo_url), width: 600, height: 400, crop: :fill, style:"border-radius: 15px 0px 0px 15px" %>
+  </div>
+  <div class = "ms-2">
+    <div>
+      <%= image_tag (photo_url), width: 300, height: 200, crop: :fill %>
+      <%= image_tag (photo_url), width: 300, height: 200, crop: :fill, style:"width: 300px; border-radius: 0px 15px 0px 0px" %>
+    </div>
+    <div>
+      <%= image_tag (photo_url), width: 300, height: 200, style:"width: 300px;", crop: :fill %>
+      <%= image_tag (photo_url), width: 300, height: 200, style:"width: 300px; border-radius: 0px 0px 15px 0px" ,crop: :fill %>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-evenly" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
+    <div class="mt-5 ms-5" style="bottom: 0; right: 0">
+      <h2>Product info</h2>
+      <p><i class="fa-solid fa-star"></i>Brand: <%= @product.brand%></p>
+      <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
+      <p><i class="fa-solid fa-tag"></i>Price: £<%= @product.price.round%>
+      <% if current_user && current_user != @product.business.owner %>
+      <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-dark mt-3 me-2">Seek it!</a>
+      </div>
+      <% elsif current_user && current_user == @product.business.owner %>
+        <div class="d-flex">
+          <div class="m-1">
+            <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
+          </div>
+          <div class="m-1">
+            <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <div style="width: 40vw; height: 500px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-4" style ="width:100vw">
+  <div class="m-1">
+    <%= link_to "Add new product", new_business_product_path,  class: "btn btn-dark"%>
+  </div>
+</div>

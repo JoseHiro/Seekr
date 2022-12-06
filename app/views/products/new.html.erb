@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Add a new product</h1>
-  <%= simple_form_for(@product) do |f| %>
+  <%= simple_form_for([@business, @product]) do |f| %>
         <%= f.input :name %>
         <%= f.input :price, as: :float%>
         <%= f.input :category %>

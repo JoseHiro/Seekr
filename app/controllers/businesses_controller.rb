@@ -21,11 +21,11 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
   def delete
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
   def index
@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
   private
