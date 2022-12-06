@@ -1,9 +1,25 @@
 <div style="background-color: #2997D8; height: 600px; " class="d-flex justify-content-center">
-  <div>
-    <h1 style="font-weight: bold; color:white; margin-top: 200px ">Find anything on the highstreet</h1>
-    <form action="">
-    <input type="text">
-    <input type="submit" value="Seek" class="btn btn-light">
-    </form>
+  <div class="d-flex flex-column">
+    <h1 style="font-weight: bold; color:white; margin-top: 200px; text-align:center">Find anything on the highstreet</h1>
+    <div>
+      <%= form_with url: new_itinerary_path, method: :get, class: "d-flex flex-column ms-4 align-items-center", data: {address_autocomplete_target: "form"}  do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mb-3",
+          placeholder: "What you aim?",
+          style: "width: 45vw; border-radius: 5px 5px 5px 5px;"
+        %>
+        <%= text_field_tag :address,
+          params[:address],
+          class: "form-control",
+          placeholder: "Location",
+          data: {address_autocomplete_target: "address", controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]},
+          style: "width: 30vw; border-radius: 5px 5px 5px 5px;"
+        %>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <%= submit_tag "Search", class: "white-btn" %>
+    </div>
+      <% end %>
   </div>
 </div>

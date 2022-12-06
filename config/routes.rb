@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :businesses do
     resources :products
   end
+
+  resources :itineraries, only: [:new, :update, :delete]
 end
