@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color:#2997D8; border-bottom: solid 1px white">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="height: 200px; background-color:#2997D8; border-bottom: solid 1px white">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <h2 style="font-weight: bold; color:white;" >Seeker</h2>
@@ -36,5 +36,27 @@
         <% end %>
       </ul>
     </div>
+  </div>
+  <div>
+    <%= form_with url: businesses_path, method: :get, class: "" do %>
+      <%= text_field_tag :query1,
+                          params[:query1],
+                          class: "form-control",
+                          style:"border-radius: 10px",
+                          placeholder: "Seek a product.."
+                          %>
+      <div class="d-flex">
+      <%= text_field_tag :query1,
+                          params[:query1],
+                          class: "form-control",
+                          style:"border-radius: 10px",
+                          placeholder: "Add location"
+                          %>
+
+      <%= button_tag type: 'submit', class:"btn" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
