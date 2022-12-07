@@ -1,1 +1,34 @@
 // Specific CSS for your home-page
+
+.landing-navbar {
+  height: 100px;
+}
+
+.category-img{
+  height:200px; width:200px;
+}
+
+@media screen and (max-width: 480px){
+  .landing-navbar {
+    height: 150px !important;
+  }
+
+  .category-img {
+    height:100px; width:100px !important;
+  }
+
+  .display-none {
+    display:none;
+  }
+
+
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 959px) {
+
+}
+
+@media screen and (min-width: 960px) {
+
+}

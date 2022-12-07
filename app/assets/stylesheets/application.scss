@@ -5,10 +5,12 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Where we can share common elements
 @import "components/general";
-@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
