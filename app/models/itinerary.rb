@@ -1,4 +1,4 @@
 class Itinerary < ApplicationRecord
-  belongs_to :saved_itinerary
+  has_many :saved_itineraries
   has_many :products, through: :product_itineraries
 end

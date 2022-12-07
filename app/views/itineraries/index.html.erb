@@ -1,0 +1,15 @@
+<div class="container m-2 p-3 card borde">
+  <h1>Your itineraries</h1>
+  <%@saved_itineraries.each do |saved_itinerary| %>
+      <div class="container">
+        <div class="card-header m-3" id="headingOne">
+        <h5>
+        <%= saved_itinerary.itinerary.name %>
+        </h5>
+      </div>
+    </div>
+
+  <% end %>
+
+
+</div>

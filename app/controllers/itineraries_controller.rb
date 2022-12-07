@@ -2,7 +2,34 @@ class ItinerariesController < ApplicationController
   def new
     seek = params[:filters].nil? ? "" : params[:filters][:seek]
     address = params[:filters].nil? ? "" : params[:filters][:address]
-    @products = search_engine(seek, address)
+    query = search_engine(seek, address)
+    @products = query[0]
+    @counter = query[1]
+  end
+
+  def create
+    product = Product.find(params[:product_id])
+    @itinerary = Itinerary.new(new_itinerary_params)
+    if @itinerary.save
+      saved_itinerary = SavedItinerary.new(itinerary: @itinerary, user: current_user)
+      if saved_itinerary.save
+        redirect_to my_itineraries_path(@itinerary)
+      else
+        redirect_to root_path
+      end
+    end
+  end
+
+  def show
+    @itinerary = Itinerary.find(params[:id])
+  end
+
+  def index
+    @saved_itineraries = current_user.saved_itineraries
+  end
+
+  def add_more_products
+    @itinerary = Itinerary.find(params[:id])
   end
 
   private
@@ -24,9 +51,11 @@ class ItinerariesController < ApplicationController
       end
     elsif seek != ""
       products = Product.search_by_product(seek)
-    else
-      products = Product.all
     end
-    return products
+    return [products, products.count || 0]
+  end
+
+  def new_itinerary_params
+    params.require(:itinerary).permit(:name, :status)
   end
 end
