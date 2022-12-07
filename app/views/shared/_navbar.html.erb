@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="height: 200px; background-color:#2997D8; border-bottom: solid 1px white">
+<div class="landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <h2 style="font-weight: bold; color:white;" >Seeker</h2>
@@ -39,7 +39,6 @@
   </div>
   <div>
     <%# if it's not the langing page, put the search engine in the navbar %>
-    <% if controller_name != "pages" && action_name != "home" %>
     <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
         <%= f.input :seek %>
         <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>

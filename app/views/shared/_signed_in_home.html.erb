@@ -22,10 +22,15 @@
   </div>
 
   <div>
-    <div class="ms-3 white" style="height: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-      
+    <div class="ms-3 white" style="height: 600px; width: 800px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+      <h4><i class="fa-solid fa-location-pin"></i></h4>
+      <%= simple_form_for(current_user, as: :user, url: registration_path(:user), html: { method: :put }) do |f| %>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
 
-      <%# <h1>My route</h1> %>
+        <div class="form-actions">
+        <%= f.button :submit, "Update", class:"btn btn-dark" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
