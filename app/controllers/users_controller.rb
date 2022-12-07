@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def update_address
+    raise
   end
-
-
 end

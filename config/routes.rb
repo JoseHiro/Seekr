@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :users, only: [:show]
+  resources :locations, only: [:create, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
