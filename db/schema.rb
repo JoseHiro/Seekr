@@ -11,7 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_07_185054) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_181846) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_185054) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["business_id"], name: "index_products_on_business_id"
   end
 

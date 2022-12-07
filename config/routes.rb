@@ -11,5 +11,11 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  resources :itineraries, only: [:new, :update, :delete]
+  get "/products", to: "products#list_all"
+  get "/products/:id", to: "product#show_selected"
+
+  resources :itineraries, only: [:new]
+  get "/itineraries/:product_id/generate", to: "itineraries#create", as: "create_itinerary"
+  get "/my_itineraries", to: "itineraries#index", as: "my_itinerary"
+  get "/my_itineraries/:id", to: "itineraries#show", as: "my_itineraries"
 end
