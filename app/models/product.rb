@@ -4,8 +4,10 @@ class Product < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_product,
-                  against: [:name, :category],
+                  against: [:name, :category, :brand],
                   using: {
-                    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+                    trigram: {
+                      word_similarity: true
+                    }
                   }
 end
