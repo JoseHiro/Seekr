@@ -1,3 +1,12 @@
 <div class="container m-3 p-3">
-
+  <% @products.each do |product| %>
+    <div class="card border p-3 m-5">
+      <%= product.name %>
+      <%= product.availability %>
+      <%= product.price %>
+      <%= product.brand %>
+      <%= product.category %>
+    </div>
+  <% end %>
+</div>
 </div>
