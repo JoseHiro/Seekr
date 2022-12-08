@@ -1,0 +1,15 @@
+<div class="card m-3" data-itineraries-index-target="info">
+  <h5 class="card-header" data-itineraries-index-target="name"><strong><%= saved_itinerary.itinerary.name %></strong> &nbsp<span data-action="click->itineraries-index#displayForm"><i class="fa-solid fa-pencil"></i></span></h5>
+  <%= simple_form_for saved_itinerary.itinerary, html: {class: "d-flex flex-row card-header align-content-center justify-content-between d-none", data: { itineraries_index_target: "form", action: "submit->itineraries-index#update"}} do |f| %>
+    <%= f.input :name, label: false %>
+    <%=  f.simple_fields_for :saved_itinerary do |i| %>
+             <%= i.input :saved_itinerary_id, as: :hidden, input_html: {value: saved_itinerary.id} %>
+          <% end %>
+    <%= f.submit "Change name", class: "btn btn-dark h-50" %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title">This itinerary is scheduled to be used at <%= saved_itinerary.date %></h5>
+    <p class="card-text">Your itinerary includes <%= pluralize(saved_itinerary.itinerary.products.count, "product") %></p>
+    <%= link_to "See datails", my_itineraries_path(saved_itinerary.itinerary), class: "btn btn-dark" %>
+  </div>
+</div>

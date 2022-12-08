@@ -1,8 +1,8 @@
 <h1>Products available</h1>
 <div class="container d-flex justify-content-center">
   <div>
-    <%= @products.each do|product|%>
+    <% @products.each do|product|%>
       <%= render "shared/product_card" %>
-    <%= end %>
+    <% end %>
   </div>
 </div>
