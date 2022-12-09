@@ -18,7 +18,7 @@
       <%= simple_form_for @itinerary.saved_itineraries.first, url: update_element_path(@itinerary.saved_itineraries.first, "date") , html: {class: "d-flex flex-row align-content-center justify-content-between d-none", data: { itinerary_show_target: "dateForm", action: "submit->itinerary-show#updateDate"}} do |f| %>
           <%= f.input :date, label: false, html5:true %>
           <input type="hidden" value="<%= @itinerary.saved_itineraries.first.id%>" data-itinerary-show-target="savedItineraryId">
-          <%= f.submit "Edit", class: "btn btn-dark h-50" %>
+          <%= f.submit "Save", class: "btn btn-dark h-50" %>
         <% end %>
       <p>
         We beleive this is the fastest route, but feel free to customize it below.
@@ -27,7 +27,7 @@
         <ul>
           <% @itinerary.products.each do |product| %>
             <li style="list-style-type: none;">
-              <div class="card-product">
+              <div class="card-product m-3">
                 <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                 <div class="card-product-infos">
                   <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
