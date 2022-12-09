@@ -7,6 +7,7 @@
         <%= f.input :brand %>
         <%= f.input :description %>
         <%= f.input :availability %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
         <%= f.submit class: "btn btn-dark"%>
       <% end %>
 </div>
