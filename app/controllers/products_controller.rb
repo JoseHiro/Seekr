@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def show_selected
     @product = Product.find(params[:id])
+    @photos = @product.photos
   end
 
   def index
