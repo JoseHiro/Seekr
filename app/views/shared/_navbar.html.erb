@@ -2,12 +2,25 @@
    <%= link_to "/", class: "navbar-brand" do %>
       <h2 style="font-weight: bold; color:white;" >Seekr</h2>
     <% end %>
-
-
-  <% if user_signed_in? %>
+  <% if user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))  %>
     <div style="text-align:center">
       <div class="sign-in-search-engine-pc-tablet">
-        <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+        <!-- The following form displays if adding more products -->
+        <% if controller_name == "itineraries" && action_name == "add_products" %>
+            <%= simple_form_for :filters, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        <!-- The following form will be displayed if creating a new itinerary instance -->
+        <% else %>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
           <div class="d-flex">
             <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
             <div class="d-flex" style="border-radius: 15px" >
@@ -18,11 +31,12 @@
             </div>
           </div>
         <% end %>
+      <% end %>
       </div>
     </div>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in?%>
     <label class="toggle" for="open">
         <i class="fa fa-bars" style="font-size: 40px;"aria-hidden="true"></i>
     </label>
@@ -37,15 +51,31 @@
       </nav>
     </div>
     <div class="sign-in-search-engine">
-      <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
-          <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
-          <div class="d-flex" style="border-radius: 15px" >
-            <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-            <%= button_tag type: 'submit', class:"btn me-5" do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            <% end %>
+     <% if controller_name == "itineraries" && action_name == "add_products" %>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
           </div>
-        </div>
+          <% end %>
+        <!-- The following form will be displayed if creating a new itinerary instance -->
+        <% else %>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% else %>
