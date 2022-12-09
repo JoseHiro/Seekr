@@ -29,46 +29,6 @@
   border-radius: 150px !important;
 }
 
-.trapezoid-right,
-.trapezoid-right > div{
-  box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  width: 184px;
-  background-size: cover;
-  background-position: center;
-  display: inline-block;
-  transform-origin: 0 100%;
-  overflow: hidden;
-}
-.trapezoid-right{
-  overflow: hidden;
-  transform: skew(15deg);
-}
-.trapezoid-right > div{
-  overflow: hidden;
-  transform: skew(-15deg);
-}
-
-.trapezoid-left,
-.trapezoid-left > div{
-  box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  width: 184px;
-  background-size: cover;
-  background-position: center;
-  display: inline-block;
-  transform-origin: 100% 0;
-  overflow: hidden;
-}
-
-.trapezoid-left{
-  transform: skew(15deg);
-  overflow: hidden;
-}
-.trapezoid-left > div{
-  overflow: hidden;
-  transform: skew(-15deg);
-}
-
-
 .form-control {
   border-radius: 15px
 }
@@ -98,6 +58,10 @@
 
   .sign-in-search-engine-pc-tablet {
     display: none;
+  }
+
+  .sign-in-right-container {
+    width:100%;
   }
 
 }
