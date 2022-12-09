@@ -1,55 +1,64 @@
-<div class="landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
-  <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <h2 style="font-weight: bold; color:white;" >Seeker</h2>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "/", class: "nav-link" %>
-          </li>
-
-          <li class="nav-item dropdown">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= image_tag "https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-        <div class="d-flex">
-          <li class="nav-item">
-            <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        </div>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="sign-in-search-engine">
+<%# if it's not the langing page, put the search engine in the navbar %>
     <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
-        <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
-        <div class="d-flex" style="border-radius: 15px" >
-          <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-          <%= button_tag type: 'submit', class:"btn me-5" do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          <% end %>
-        </div>
+        <%= f.input :seek %>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+        <%= button_tag type: 'submit', class:"btn" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       </div>
     <% end %>
+
+
+
+<%# current_location  %>
+
+  <div style="overflow:hidden" class="white">
+    <div class="user-signed-in-main-container white" style="">
+
+      <% if current_user.location.presence == nil %>
+        <%= simple_form_for Location.new, data: {turbo: false} do |f|%>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <div class="form-actions">
+            <%= f.button :submit, "Set address", class:"btn btn-dark" %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="d-flex">
+        <h4><i class="fa-solid fa-location-pin"></i></h4>
+          <%= current_user.location.address %>
+        </div>
+
+        <%= simple_form_for (current_user.location) do |f|%>
+          <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <%= f.button :submit, "Change address", class:"btn btn-dark" %>
+        <% end %>
+      <% end %>
+
+
+<%# shops %>
+  <div>
+    <div class="mt-4 d-flex justify-content-around">
+      <div>
+        <img style="width:120px; height:120px" src="https://s3.amazonaws.com/businessinsider.mx/wp-content/uploads/2020/06/18123255/tienda-tiendas-tienditas-negocios-ventas-dulces-refrescos-mexico.jpg" alt="">
+        <p>Tiendita</p>
+      </div>
+      <div>
+        <img style="width:120px; height:120px" src="https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/Oxxo-3.jpg" alt="">
+        <p>Oxxo</p>
+      </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-around">
+      <div>
+        <img style="width:100px; height:100px" src="https://diario.mx/jrz/media/uploads/galeria/2022/04/29/20220429103521946-0-1925181.jpg" alt="">
+        <p>Cuidado el Perro</p>
+      </div>
+      <div>
+        <img style="width:100px; height:100px" src="https://media.admagazine.com/photos/618a62445e45a526c6be8c1d/1:1/w_2391,h_2391,c_limit/83594.jpg" alt="">
+        <p>Mc donlads</p>
+      </div>
+      <div>
+        <img style="width:100px; height:100px" src="https://fastly.4sqi.net/img/general/600x600/42347570_PuP3dqmmh-J3SSvkJfdR5_ffyOeqC9M8z8CfPNjNscg.jpg" alt="">
+        <p>Moshi Moshi</p>
+      </div>
+    </div>
   </div>
-</div>
