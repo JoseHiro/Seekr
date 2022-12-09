@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :users, only: [:show]
-<<<<<<< HEAD
-=======
   resources :locations, only: [:create, :update]
 
->>>>>>> origin
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -17,10 +14,6 @@ Rails.application.routes.draw do
   end
 
   get "/products", to: "products#list_all"
-<<<<<<< HEAD
-  get "/products/:id", to: "product#show_selected"
-  resources :itineraries, only: [:new, :update, :delete]
-=======
   get "/products/:id", to: "product#show_selected", as: "show_product"
 
   resources :itineraries, only: [:new, :update]
@@ -28,5 +21,4 @@ Rails.application.routes.draw do
   get "/my_itineraries", to: "itineraries#index", as: "my_itinerary"
   get "/my_itineraries/:id", to: "itineraries#show", as: "my_itineraries"
   patch "/my_itineraries/:id/update/:element", to: "itineraries#update_element", as: "update_element"
->>>>>>> origin
 end
