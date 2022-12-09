@@ -1,0 +1,21 @@
+
+<div style="text-align:center; background-color:black; height: 40px; width:100%;">
+  <h3 style="color:white">Shops near you</h3>
+</div>
+
+
+<% if current_user.location == nil %>
+  <h4 class="mt-4 mb-4"> Set your location to see stores around you</h4>
+<% elsif @shops == [] %>
+  <h4 class="mt-4 mb-4"> Sorry... no shops around your current address at the moment..</h4>
+<% else %>
+  <% @shops.each do |shop| %>
+  <div class="mb-2 d-flex">
+     <img style="width:120px; height:120px" src="https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/Oxxo-3.jpg" alt="">
+     <div class="">
+      <%= shop.name %>
+      <%= shop.address %>
+     </div>
+  </div>
+  <% end %>
+<% end %>

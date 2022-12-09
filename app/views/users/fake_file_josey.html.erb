@@ -1,13 +1,64 @@
-<%= current_user.address %>
+<%# if it's not the langing page, put the search engine in the navbar %>
+    <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+        <%= f.input :seek %>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+        <%= button_tag type: 'submit', class:"btn" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       </div>
-      <%= simple_form_for(current_user, url: update_user_address_path, html: { method: :patch }) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+    <% end %>
+
+
+
+<%# current_location  %>
+
+  <div style="overflow:hidden" class="white">
+    <div class="user-signed-in-main-container white" style="">
+
+      <% if current_user.location.presence == nil %>
+        <%= simple_form_for Location.new, data: {turbo: false} do |f|%>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
           <div class="form-actions">
-            <%= f.button :submit, "Update", class:"btn btn-dark" %>
+            <%= f.button :submit, "Set address", class:"btn btn-dark" %>
           </div>
+        <% end %>
+      <% else %>
+        <div class="d-flex">
+        <h4><i class="fa-solid fa-location-pin"></i></h4>
+          <%= current_user.location.address %>
         </div>
+
+        <%= simple_form_for (current_user.location) do |f|%>
+          <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <%= f.button :submit, "Change address", class:"btn btn-dark" %>
+        <% end %>
       <% end %>
 
 
-      <p>Current Location: <%= current_user.location.address %></p>
+<%# shops %>
+  <div>
+    <div class="mt-4 d-flex justify-content-around">
+      <div>
+        <img style="width:120px; height:120px" src="https://s3.amazonaws.com/businessinsider.mx/wp-content/uploads/2020/06/18123255/tienda-tiendas-tienditas-negocios-ventas-dulces-refrescos-mexico.jpg" alt="">
+        <p>Tiendita</p>
+      </div>
+      <div>
+        <img style="width:120px; height:120px" src="https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/Oxxo-3.jpg" alt="">
+        <p>Oxxo</p>
+      </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-around">
+      <div>
+        <img style="width:100px; height:100px" src="https://diario.mx/jrz/media/uploads/galeria/2022/04/29/20220429103521946-0-1925181.jpg" alt="">
+        <p>Cuidado el Perro</p>
+      </div>
+      <div>
+        <img style="width:100px; height:100px" src="https://media.admagazine.com/photos/618a62445e45a526c6be8c1d/1:1/w_2391,h_2391,c_limit/83594.jpg" alt="">
+        <p>Mc donlads</p>
+      </div>
+      <div>
+        <img style="width:100px; height:100px" src="https://fastly.4sqi.net/img/general/600x600/42347570_PuP3dqmmh-J3SSvkJfdR5_ffyOeqC9M8z8CfPNjNscg.jpg" alt="">
+        <p>Moshi Moshi</p>
+      </div>
+    </div>
+  </div>
