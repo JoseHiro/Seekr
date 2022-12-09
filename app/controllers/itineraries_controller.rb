@@ -8,12 +8,13 @@ class ItinerariesController < ApplicationController
   end
 
   def create
-    product = Product.find(params[:product_id])
+    @product = Product.find(params[:product_id])
     @itinerary = Itinerary.new(new_itinerary_params)
     if @itinerary.save
-      saved_itinerary = SavedItinerary.new(itinerary: @itinerary, user: current_user)
+      saved_itinerary = SavedItinerary.new(itinerary: @itinerary, user: current_user, date: Date.today)
       if saved_itinerary.save
-        redirect_to my_itineraries_path(@itinerary)
+        product_itinerary = ProductItinerary.new(itinerary: @itinerary, product: @product)
+        redirect_to my_itineraries_path(@itinerary) if product_itinerary.save
       else
         redirect_to root_path
       end
@@ -30,6 +31,35 @@ class ItinerariesController < ApplicationController
 
   def add_more_products
     @itinerary = Itinerary.find(params[:id])
+  end
+
+  def update
+    @itinerary = Itinerary.find(params[:id])
+    @saved_itinerary = SavedItinerary.find(params[:itinerary][:saved_itinerary][:saved_itinerary_id])
+    @itinerary.update(new_itinerary_params)
+    respond_to do |format|
+      format.html { redirect_to my_itineraries_path }
+      format.text { render partial: "itineraries/itinerary_info", locals: {saved_itinerary: @saved_itinerary}, formats: [:html] }
+    end
+  end
+
+  def update_element
+    element = params[:element]
+    if element == "name"
+      @itinerary = Itinerary.find(params[:id])
+      @itinerary.update(new_itinerary_params)
+      respond_to do |format|
+        format.html { redirect_to my_itineraries_path(@itinerary) }
+        format.text { render partial: "itineraries/itinerary_show_name", locals: {itinerary: @itinerary}, formats: [:html] }
+      end
+    elsif element == "date"
+      @saved_itinerary = SavedItinerary.find(params[:id])
+      @saved_itinerary.update(saved_itinerary_params)
+      respond_to do |format|
+        format.html { redirect_to my_itineraries_path(@itinerary) }
+        format.text { render partial: "itineraries/itinerary_show_date", locals: {saved_itinerary: @saved_itinerary}, formats: [:html] }
+      end
+    end
   end
 
   private
@@ -57,5 +87,9 @@ class ItinerariesController < ApplicationController
 
   def new_itinerary_params
     params.require(:itinerary).permit(:name, :status)
+  end
+
+  def saved_itinerary_params
+    params.require(:saved_itinerary).permit(:date)
   end
 end

@@ -1,0 +1,82 @@
+<h1><%@product.name%></h1>
+<div class="products_index_photo_container">
+</div>
+
+<div class="d-flex justify-content-left" style="height:600px;">
+  <div>
+  <div class="d-flex" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 90vw; border-radius: 15px;">
+    <div class="mt-5 ms-5" style="bottom: 0; right: 0">
+      <h2>Product info</h2>
+      <p><i class="fa-solid fa-star"></i>Brand: <%= @product.brand%></p>
+      <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
+      <p><i class="fa-solid fa-tag"></i>Price: £<%= @product.price.round%>
+      <% if current_user && current_user != @product.business.owner %>
+      <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-dark mt-3 me-2">Seek it!</a>
+      </div>
+      <% elsif current_user && current_user == @product.business.owner %>
+        <div class="d-flex">
+          <div class="m-1">
+            <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
+          </div>
+          <div class="m-1">
+            <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div style="width: 100vw; height: 100vh;">
+      <div style="width: 100vw; height: 100vh;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-4" style ="width:100vw">
+  <div class="m-1">
+    <%= link_to "Add new product", new_business_product_path,  class: "btn btn-dark"%>
+  </div>
+</div>
+
+<% if current_user && current_user != @product.business.owner %>
+  <div class="d-flex justify-content-center">
+    <a href="#" class="btn btn-dark mt-3 me-2">Seek it!</a>
+  </div>
+<% elsif current_user && current_user == @product.business.owner %>
+  <div class="d-flex">
+    <div class="m-1">
+      <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
+    </div>
+    <div class="m-1">
+      <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+    </div>
+  </div>
+<% end %>
+
+    <div class="picture-holder-business-product-show d-flex"  width="45%" height="100%">
+
+      <div class="double-picture-holder-business-product-show">
+        <div class="small-picture-business-product-show">
+          <img class="bd-placeholder-img c-image" width="100%" height="100%" src="https://k8q7r7a2.stackpathcdn.com/wp-content/uploads/2021/04/Rolex-Daytona-Meteorite-dial-white-gold-ceramic-bezel-oysterflex-bracelet-116519ln-6.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="width: 100%; height:100%">
+        </div>
+        <div class="small-picture-business-product-show">
+          <img class="bd-placeholder-img c-image" width="100%" height="100%" src="https://k8q7r7a2.stackpathcdn.com/wp-content/uploads/2021/04/Rolex-Daytona-Meteorite-dial-white-gold-ceramic-bezel-oysterflex-bracelet-116519ln-6.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="width: 100%; height:100%">
+        </div>
+      </div>
+
+      <div class="double-picture-holder-business-product-show">
+        <div class="small-picture-business-product-show">
+          <img class="bd-placeholder-img c-image" width="100%" height="100%" src="https://k8q7r7a2.stackpathcdn.com/wp-content/uploads/2021/04/Rolex-Daytona-Meteorite-dial-white-gold-ceramic-bezel-oysterflex-bracelet-116519ln-6.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="width: 100%; height:100%">
+        </div>
+        <div class="small-picture-business-product-show">
+          <img class="bd-placeholder-img c-image" width="100%" height="100%" src="https://k8q7r7a2.stackpathcdn.com/wp-content/uploads/2021/04/Rolex-Daytona-Meteorite-dial-white-gold-ceramic-bezel-oysterflex-bracelet-116519ln-6.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="width: 100%; height:100%">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

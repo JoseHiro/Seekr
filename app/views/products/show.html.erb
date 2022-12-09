@@ -1,55 +1,128 @@
-<h1><%@product.name%></h1>
-<div class="d-flex justify-content-center" style="border-radius: 15px; width 100%; height:450px">
-  <% photo_url = "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg"%>
-  <div style='width: 600px; height: 400px; border-radius: 15px 0px 0px 15px;' >
-    <%= image_tag (photo_url), width: 600, height: 400, crop: :fill, style:"border-radius: 15px 0px 0px 15px" %>
-  </div>
-  <div class = "ms-2">
-    <div>
-      <%= image_tag (photo_url), width: 300, height: 200, crop: :fill %>
-      <%= image_tag (photo_url), width: 300, height: 200, crop: :fill, style:"width: 300px; border-radius: 0px 15px 0px 0px" %>
-    </div>
-    <div>
-      <%= image_tag (photo_url), width: 300, height: 200, style:"width: 300px;", crop: :fill %>
-      <%= image_tag (photo_url), width: 300, height: 200, style:"width: 300px; border-radius: 0px 0px 15px 0px" ,crop: :fill %>
-    </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  <div class="d-flex justify-content-evenly" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
-    <div class="mt-5 ms-5" style="bottom: 0; right: 0">
-      <h2>Product info</h2>
-      <p><i class="fa-solid fa-star"></i>Brand: <%= @product.brand%></p>
-      <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
-      <p><i class="fa-solid fa-tag"></i>Price: £<%= @product.price.round%>
-      <% if current_user && current_user != @product.business.owner %>
-      <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-dark mt-3 me-2">Seek it!</a>
+<div id="show-container" style="width: 100vw; background-color:white;">
+  <div class="d-flex justify-content-around">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="height: 35vh; width: 100vw; ">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 3"></button>
       </div>
-      <% elsif current_user && current_user == @product.business.owner %>
-        <div class="d-flex">
-          <div class="m-1">
-            <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
-          </div>
-          <div class="m-1">
-            <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+      <div class="carousel-inner" style="height: 35vh;" >
+        <div class="carousel-item active" style="height: 35vh;  width: 100vw;">
+          <%= cl_image_tag @photos[0].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <div class="container">
+            <div class="carousel-caption text-start">
+            </div>
           </div>
         </div>
-      <% end %>
-    </div>
-    <div>
-      <div style="width: 40vw; height: 500px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
+        <div class="carousel-item" style="height: 35vh">
+          <%= cl_image_tag @photos[1].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l" , preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <div class="container">
+            <div class="carousel-caption">
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="height: 35vh">
+          <%= cl_image_tag @photos[2].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l"  , preserveAspectRatio: "xMidYMid slice", focusable: "false"%>
+          <div class="container">
+            <div class="carousel-caption text-end">
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="height: 35vh">
+          <%= cl_image_tag @photos[3].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <div class="container">
+            <div class="carousel-caption text-end">
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="height: 35vh">
+          <%= cl_image_tag @photos[4].key, height: 600, width: 600, crop: :fill, class:"bd-placeholder-img c-image-l" , preserveAspectRatio: "xMidYMid slice", focusable: "false"%>
+          <div class="container">
+            <div class="carousel-caption text-end">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <div id="wide-buttons">
+        <% if current_user && current_user == @product.business.owner %>
+          <div class="d-flex">
+            <div class="m-1">
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
+            </div>
+            <div class="m-1">
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+            </div>
+          </div>
+          <h2><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+        <% else %>
+          <div class="d-flex align-items-center">
+            <div class="m-1">
+              <a class="btn btn-dark">Add to itinerary!</a>
+            </div>
+            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
 
-<div class="d-flex justify-content-center mt-4" style ="width:100vw">
-  <div class="m-1">
-    <%= link_to "Add new product", new_business_product_path,  class: "btn btn-dark"%>
+
+  <div id=info-container-picture-business-product-show class="d-flex justify-content-center pt-3" style= "width: 100vw; background-color: white">
+    <div class="" style=" width: 95vw; ">
+      <div class="m-2" style="bottom: 0; right: 0">
+        <div class="mt-1">
+          <h2 style="font-weight: bold"><%=@product.name%></h2>
+          <hr>
+          <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
+          <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
+        </div>
+      </div>
+      <div class="m-2">
+        <h2>More info</h2>
+        <p><i class="fa-solid fa-star"></i> This is Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div id="narrow-buttons">
+        <% if current_user && current_user == @product.business.owner %>
+          <div class="d-flex align-items-center">
+            <div class="m-1">
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
+            </div>
+            <div class="m-1">
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+            </div>
+            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+          </div>
+        <% else %>
+          <div class="d-flex align-items-center">
+            <div class="m-1">
+              <a class="btn btn-dark">Add to itinerary!</a>
+            </div>
+            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+          </div>
+        <% end %>
+        <hr>
+        </div>
+        <div id="show-map" class="map" style="width: 100%; height: 30vh; border-radius-button: 10px; margin-bottom: 2vh;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+    </div>
   </div>
 </div>

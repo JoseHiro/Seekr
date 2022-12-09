@@ -13,5 +13,8 @@ application.register("hello", HelloController)
 import ItinerariesIndexController from "./itineraries_index_controller"
 application.register("itineraries-index", ItinerariesIndexController)
 
+import ItineraryShowController from "./itinerary_show_controller"
+application.register("itinerary-show", ItineraryShowController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)

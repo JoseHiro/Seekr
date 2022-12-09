@@ -10,6 +10,7 @@
     <%= f.input :opening_time, as: :time, html5: true %>
     <%= f.input :closing_time, as: :time, html5: true %>
     <%= f.input :description %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
     <% end %>
   </div>

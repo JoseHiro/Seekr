@@ -1,20 +1,63 @@
-<div class="landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
+<div class="d-flex landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
    <%= link_to "/", class: "navbar-brand" do %>
-      <h2 style="font-weight: bold; color:white;" >Seeker</h2>
+      <h2 style="font-weight: bold; color:white;" >Seekr</h2>
     <% end %>
-   <label class="toggle" for="open">
-      <i class="fa fa-bars" style="font-size: 40px;"aria-hidden="true"></i>
-   </label>
-  <input id="open" type="checkbox">
-<div id="menu">
-  <nav>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">BLOG</a></li>
-    </ul>
-  </nav>
-</div>
+
+
+  <% if user_signed_in? %>
+    <div style="text-align:center">
+      <div class="sign-in-search-engine-pc-tablet">
+        <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <label class="toggle" for="open">
+        <i class="fa fa-bars" style="font-size: 40px;"aria-hidden="true"></i>
+    </label>
+    <input id="open" type="checkbox">
+    <div id="menu">
+      <nav>
+        <ul>
+          <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+        </ul>
+      </nav>
+    </div>
+    <div class="sign-in-search-engine">
+      <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+          <div class="d-flex" style="border-radius: 15px" >
+            <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+            <%= button_tag type: 'submit', class:"btn me-5" do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="d-flex" style="color:white">
+      <li class="nav-item me-4">
+        <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item me-2">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+    </div>
+  <% end %>
 
 
 </div>

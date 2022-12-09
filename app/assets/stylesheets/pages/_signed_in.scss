@@ -1,4 +1,3 @@
-
 .user-signed-in-sidebar {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   width: 200px;
@@ -97,16 +96,35 @@
     margin-left:0;
   }
 
+  .sign-in-search-engine-pc-tablet {
+    display: none;
+  }
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 959px) {
   .user-signed-in-sidebar {
     display:none;
   }
+
+  .sign-in-right-container {
+    width:800px;
+  }
+
+  .sign-in-search-engine {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 960px) {
   .sign-in-search-engine {
     display:none;
+  }
+  .sign-in-right-container {
+    width:800px;
+  }
+
+  .sign-in-search-engine {
+    display: none;
   }
 }
