@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @business = Business.find(params[:business_id])
+    @photos = @product.photos
   end
 
   def new
@@ -58,6 +59,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:category, :brand, :price, :name, :availability)
+    params.require(:product).permit(:category, :brand, :price, :name, :availability, photos: [])
   end
 end
