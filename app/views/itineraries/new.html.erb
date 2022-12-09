@@ -21,7 +21,6 @@
             <%= link_to "Add to my itinerary + ", create_itinerary_path(product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
           </div>
         </div>
-
       </div>
     </div>
   <% end %>

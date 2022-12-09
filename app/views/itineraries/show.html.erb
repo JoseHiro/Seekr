@@ -30,7 +30,7 @@
               <div class="card-product">
                 <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                 <div class="card-product-infos">
-                  <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i></span></a></h2>
+                  <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
                   <p><i class="fa-solid fa-location-dot"></i> <%= product.business.address %></p>
                   <p><i class="fa-solid fa-store"></i> <%= link_to product.business.name, business_path(product.business) %></p>
                 </div>
