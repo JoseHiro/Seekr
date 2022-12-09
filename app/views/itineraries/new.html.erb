@@ -1,3 +1,29 @@
-<div class="container m-3 p-3">
+<div class="container m-5 p-3 d-flex flex-column">
+  <h1><%= pluralize(@counter, "Result") %></h1>
+  <br>
+  <div class="d-flex flex-wrap flex-row m-3">
+  <% @products.each do |product| %>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+        <p><%= product.description %></p>
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row justify-content-between align-items-center">
+            <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+            <% if product.availability  %>
+              <span class="badge bg-success badge-pill badge-success">Available</span>
+            <% else %>
+              <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to "Add to my itinerary + ", create_itinerary_path(product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
+          </div>
+        </div>
 
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>

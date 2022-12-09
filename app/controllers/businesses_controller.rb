@@ -1,18 +1,18 @@
 class BusinessesController < ApplicationController
+  CATEGORY_LIST = [
+    "Automotive", "Business Support & Supplies", "Computers & Electronics", "Construction & Contractors",
+    "Education", "Entertainment", "Food & Dining", "Health & Medicine", "Home & Garden", "Legal & Financial",
+    "Manufacturing, Wholesale,Distribution", "Merchants (Retail)", "Miscellaneous", "Personal Care & Services",
+    "Real Estate", "Travel & Transportation"
+  ]
   def new
     @business = Business.new
-    @category_list = [
-      "Automotive", "Business Support & Supplies", "Computers & Electronics", "Construction & Contractors",
-      "Education", "Entertainment", "Food & Dining", "Health & Medicine", "Home & Garden", "Legal & Financial",
-      "Manufacturing, Wholesale,Distribution", "Merchants (Retail)", "Miscellaneous", "Personal Care & Services",
-      "Real Estate", "Travel & Transportation"
-    ]
+    @category_list = CATEGORY_LIST
   end
 
   def create
     @business = Business.new(business_params)
     @business.owner = current_user
-
     if @business.save
       redirect_to businesses_path
     else
@@ -22,6 +22,7 @@ class BusinessesController < ApplicationController
 
   def edit
     @business = Business.find(params[:id])
+    @category_list = CATEGORY_LIST
   end
 
   def update
@@ -40,27 +41,7 @@ class BusinessesController < ApplicationController
   end
 
   def index
-    # @businesses = Business.all
-
-    # search by shop category
-    if params[:filters]
-      category = params[:filters][:category]
-      address = params[:filters][:address]
-      if !(category == "") && !(address == "")
-        businesses = Business.where("address ILIKE ?", "%#{address}%")
-        @businesses = businesses.where(
-          "category ILIKE ?", "%#{category}%"
-        )
-      elsif !(address == "")
-        @businesses = Business.where(
-          "address ILIKE ?", "%#{address}%"
-        )
-      elsif !(category == "")
-        @businesses = Business.where("category ILIKE ?", "%#{category}%")
-      end
-    else
-        @businesses = Business.all
-    end
+    @businesses = Business.all
   end
 
   def show

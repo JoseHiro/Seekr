@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_185054) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_181846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
     t.time "opening_time"
     t.time "closing_time"
     t.string "category"
-    t.boolean "open"
+    t.boolean "open", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
@@ -63,6 +64,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "product_itineraries", force: :cascade do |t|
@@ -83,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["business_id"], name: "index_products_on_business_id"
   end
 
@@ -115,9 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -125,6 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_235808) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "businesses", "users"
+  add_foreign_key "locations", "users"
   add_foreign_key "product_itineraries", "itineraries"
   add_foreign_key "product_itineraries", "products"
   add_foreign_key "products", "businesses"

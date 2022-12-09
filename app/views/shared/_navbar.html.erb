@@ -39,6 +39,7 @@
   </div>
   <div>
     <%# if it's not the langing page, put the search engine in the navbar %>
+<<<<<<< HEAD
      <!--<% if controller_name != "pages" && action_name != "home" %>
       <%= simple_form_for :filters, url: businesses_path, method: :get do |f| %>
           <%= f.input :category %>
@@ -49,5 +50,17 @@
         </div>
       <% end %>
     <% end %> -->
+=======
+    <!--
+    <%= simple_form_for :filters, url: new_itinerary_path, method: :get, class: do |f| %>
+        <%= f.input :seek %>
+        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+        <%= button_tag type: 'submit', class:"btn" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+      </div>
+    <% end %>
+    -->
+>>>>>>> origin
   </div>
 </div>

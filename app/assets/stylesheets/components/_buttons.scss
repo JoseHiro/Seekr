@@ -5,4 +5,22 @@
   height: 50px;
   border: none;
   border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+.blue-btn{
+  background-color: #0C8CE9;
+  color: white;
+  width: 120px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.blue-btn:hover {
+  color: white;
+
 }
