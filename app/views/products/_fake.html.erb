@@ -41,17 +41,14 @@
   </div>
 </div>
 
-<% if current_user && current_user != @product.business.owner %>
+<% if current_user  %>
   <div class="d-flex justify-content-center">
-    <a href="#" class="btn btn-dark mt-3 me-2">Seek it!</a>
+    <%= link_to "Add to my itinerary + ", create_itinerary_path(@product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
   </div>
-<% elsif current_user && current_user == @product.business.owner %>
+<% else %>
   <div class="d-flex">
     <div class="m-1">
-      <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "btn btn-dark"%>
-    </div>
-    <div class="m-1">
-      <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "btn btn-dark"%>
+      <%= link_to "Add to my itinerary + ", create_itinerary_path(@product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
     </div>
   </div>
 <% end %>
@@ -80,3 +77,6 @@
 
   </div>
 </div>
+<div>
+            <%= link_to "See this product!", product_show_path(product), class: "blue-btn"%>
+            </div>
