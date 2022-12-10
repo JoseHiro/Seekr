@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 480px){
   .landing-navbar {
-    height: 200px !important;
+    height: 80px !important;
   }
 
   .category-img {
@@ -21,12 +21,20 @@
     display:none;
   }
 
+  #collapseExample {
+    margin-left:0;
+  }
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 959px) {
-
+  #sign-in-search-engine {
+    display:none;
+  }
 }
 
 @media screen and (min-width: 960px) {
-
+  #sign-in-search-engine {
+    display:none;
+  }
 }
