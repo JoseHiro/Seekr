@@ -1,4 +1,7 @@
 class ItinerariesController < ApplicationController
+
+  skip_before_action :verify_authenticity_token, only: [:add_product_to_itinerary, :remove_product_of_itinerary]
+
   def new
     seek = params[:filters].nil? ? "" : params[:filters][:seek]
     address = params[:filters].nil? ? "" : params[:filters][:address]
@@ -59,6 +62,35 @@ class ItinerariesController < ApplicationController
         format.html { redirect_to my_itineraries_path(@itinerary) }
         format.text { render partial: "itineraries/itinerary_show_date", locals: {saved_itinerary: @saved_itinerary}, formats: [:html] }
       end
+    end
+  end
+
+  def add_products
+    seek = params[:filters].nil? ? "" : params[:filters][:seek]
+    address = params[:filters].nil? ? "" : params[:filters][:address]
+    @itinerary = Itinerary.find(params[:id])
+    query = search_engine(seek, address)
+    @products = query[0]
+    @counter = query[1]
+  end
+
+  def add_product_to_itinerary
+    @product = Product.find(params[:product_id])
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    ProductItinerary.create(itinerary: @itinerary, product: @product)
+    respond_to do |format|
+      format.html
+      format.text { render partial: "itineraries/itinerary_add_product_card", locals: {itinerary: @itinerary, product: @product}, formats: [:html] }
+    end
+  end
+
+  def remove_product_of_itinerary
+    @product = Product.find(params[:product_id])
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    ProductItinerary.where(product: @product, itinerary: @itinerary).first.destroy
+    respond_to do |format|
+      format.html {redirect_to add_products_path(@itinerary)}
+      format.text { render partial: "itineraries/itinerary_add_product_card", locals: {itinerary: @itinerary, product: @product}, formats: [:html] }
     end
   end
 

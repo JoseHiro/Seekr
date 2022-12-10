@@ -1,7 +1,6 @@
 
 <h2>My account page</h2>
 
-
 <% if @user.avatar.attached? %>
   <%= cl_image_tag @user.avatar.key, height: 300, width: 300, crop: :fill, class:"round" %>
 <% else %>

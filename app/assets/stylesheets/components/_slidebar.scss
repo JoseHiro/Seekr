@@ -1,0 +1,43 @@
+ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: -340px; /* メニューのwidth + padding */
+  width: 300px; /* メニューのwidth */
+  height: 100%;
+  padding: 20px;
+  transition: left .5s, right .5s; /* アニメーション */
+  // background-color: rgba(86, 86, 86, .7);
+  background-color: white;
+}
+
+.toggle {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+}
+
+#open {
+  display: none;
+}
+
+/* :checked 擬似クラスを使って、#openがチェック状態になった時に、#menuが「right: 0;」になります。 */
+#open:checked + #menu {
+  left: 0;
+}

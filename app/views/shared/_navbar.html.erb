@@ -1,53 +1,93 @@
-<div class="landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
-  <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <h2 style="font-weight: bold; color:white;" >Seeker</h2>
+<div class="d-flex landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8; border-bottom: solid 1px white">
+   <%= link_to "/", class: "navbar-brand" do %>
+      <h2 style="font-weight: bold; color:white;" >Seekr</h2>
     <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "/", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= image_tag "https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+  <% if user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))  %>
+    <div style="text-align:center">
+      <div class="sign-in-search-engine-pc-tablet">
+        <!-- The following form displays if adding more products -->
+        <% if controller_name == "itineraries" && action_name == "add_products" %>
+            <%= simple_form_for :filters, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
             </div>
-          </li>
+          </div>
+          <% end %>
+        <!-- The following form will be displayed if creating a new itinerary instance -->
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  </div>
-  <div>
-    <%# if it's not the langing page, put the search engine in the navbar %>
-    <!--
-    <%= simple_form_for :filters, url: new_itinerary_path, method: :get, class: do |f| %>
-        <%= f.input :seek %>
-        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-        <%= button_tag type: 'submit', class:"btn" do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
+      <% end %>
       </div>
-    <% end %>
-    -->
-  </div>
+    </div>
+  <% end %>
+
+  <% if user_signed_in?%>
+    <label class="toggle" for="open">
+        <i class="fa fa-bars" style="font-size: 40px;"aria-hidden="true"></i>
+    </label>
+    <input id="open" type="checkbox">
+    <div id="menu">
+      <nav>
+        <ul>
+          <%= link_to "show", user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+        </ul>
+      </nav>
+    </div>
+    <div class="sign-in-search-engine">
+     <% if controller_name == "itineraries" && action_name == "add_products" %>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        <!-- The following form will be displayed if creating a new itinerary instance -->
+        <% else %>
+            <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
+            <div class="d-flex" style="border-radius: 15px" >
+              <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+              <%= button_tag type: 'submit', class:"btn me-5" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="d-flex" style="color:white">
+      <li class="nav-item me-4">
+        <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item me-2">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+    </div>
+  <% end %>
+
+
 </div>

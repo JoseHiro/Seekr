@@ -1,6 +1,6 @@
 <div class="container m-2 p-3 card border">
   <h1>Your itineraries</h1>
-  <%@saved_itineraries.each do |saved_itinerary| %>
+  <% @saved_itineraries.each do |saved_itinerary| %>
   <div data-controller = "itineraries-index">
    <div class="card m-3" data-itineraries-index-target="info">
       <h5 class="card-header" data-itineraries-index-target="name"><strong><%= saved_itinerary.itinerary.name %></strong> &nbsp<span data-action="click->itineraries-index#displayForm"><i class="fa-solid fa-pencil"></i></span></h5>

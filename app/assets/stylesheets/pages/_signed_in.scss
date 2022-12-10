@@ -1,0 +1,94 @@
+.user-signed-in-sidebar {
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: 200px;
+  height: 800px;
+  background-color: white;
+  text-align: center
+}
+.user-signed-in-main-container {
+  height: 600px;
+  width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.mapboxgl-ctrl-geocoder {
+  border-radius: 15px;
+  background-color: #F4F4F4;
+  border: 1px solid #ced4da;
+  height: 32px;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  height: 32px;
+  background-color: #F4F4F4;
+  border-radius: 150px !important;
+  text-decoration: none;
+}
+
+.seek-search {
+  border-radius: 150px !important;
+}
+
+.form-control {
+  border-radius: 15px
+}
+
+
+.home-card-slide card {
+  width: 200px;
+}
+
+.home-card-slidecard-body {
+  height: 30px !important;
+}
+
+.mapboxgl-ctrl-geocoder--icon-search{
+  display:none;
+}
+
+@media screen and (max-width: 480px){
+  .user-signed-in-sidebar {
+    display:none;
+  }
+
+  .user-signed-in-main-container {
+    width:100vw;
+    margin-left:0;
+  }
+
+  .sign-in-search-engine-pc-tablet {
+    display: none;
+  }
+
+  .sign-in-right-container {
+    width:100%;
+  }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .user-signed-in-sidebar {
+    display:none;
+  }
+
+  .sign-in-right-container {
+    width:800px;
+  }
+
+  .sign-in-search-engine {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .sign-in-search-engine {
+    display:none;
+  }
+  .sign-in-right-container {
+    width:800px;
+  }
+
+  .sign-in-search-engine {
+    display: none;
+  }
+}

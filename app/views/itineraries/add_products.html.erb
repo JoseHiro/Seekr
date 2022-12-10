@@ -1,0 +1,9 @@
+<div class="container m-5 p-3 d-flex flex-column" data-controller="itinerary-add-products">
+  <h1><%= pluralize(@counter, "Result") %></h1>
+  <br>
+  <div class="d-flex flex-wrap flex-row m-1">
+  <% @products.each do |product| %>
+    <%= render "itineraries/itinerary_add_product_card", itinerary: @itinerary, product: product %>
+  <% end %>
+  </div>
+</div>
