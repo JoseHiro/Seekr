@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   get "/products", to: "products#list_all"
-  get "/products/:id", to: "product#show_selected", as: "show_product"
+  get "/products/:id", to: "products#show_selected", as: "product_show"
 
   resources :itineraries, only: [:new, :update]
   get "/itineraries/:product_id/generate", to: "itineraries#create", as: "create_itinerary"

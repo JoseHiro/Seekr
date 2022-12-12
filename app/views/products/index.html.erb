@@ -1,19 +1,26 @@
 <h1>Your products</h1>
-<div class="container d-flex justify-content-center" style="width: 90vw;">
-  <div>
-    <% @products.each do |product|%>
-      <div class = "card d-flex" style="width: 90vw;">
-        <div><img src=# /></div>
-        <div>
-          <h4><%= product.name  %></h4>
-          <p><i class="fa-solid fa-star"></i>Brand: <%= product.brand%></p>
-          <p><i class="fa-solid fa-circle-question"></i> Category :<%= product.category %></p>
-          <p><i class="fa-solid fa-tag"></i>Price: £<%= product.price.round%></p>
-        <div>
-        <div>
-          <%= link_to "See item!", business_product_path(@business, product), class:"btn btn-dark"%>
-        </div>
+<div class="container d-flex justify-content-center">
+  <div class="d-flex flex-wrap" style="margin-left: 1vw; margin-right: 1vw;">
+    <% @products.each do |product| %>
+      <div class="card" style="width: 20rem; height: 30rem; margin-right: 2vw; margin-left: 2vw; margin-top: 4vh;">
+        <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+        <div class="card-body">
+          <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+          <div class="d-flex ">
+            <div class=" align-items-center">
+              <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+              <% if product.availability  %>
+                <span class="badge bg-success badge-pill badge-success">In stock</span>
+              <% else %>
+                <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+              <% end %>
+            </div>
+          </div>
+          <div style="margin-top: 10px">
+            <%= link_to "See/edit this product!", business_product_path(@business, product), class: "blue-btn"%>
+          </div>
+          </div>
       </div>
-    <%end%>
+    <% end %>
   </div>
 </div>

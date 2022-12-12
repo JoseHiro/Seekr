@@ -13,6 +13,7 @@ a {
 }
 
 #menu {
+  z-index: 40;
   position: fixed;
   top: 0;
   left: -340px; /* メニューのwidth + padding */
