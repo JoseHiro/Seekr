@@ -114,7 +114,7 @@ class ItinerariesController < ApplicationController
     elsif seek != ""
       products = Product.search_by_product(seek)
     end
-    return [products, products.count || 0]
+    return [products, products.count || 0] # Polimorfism!!!
   end
 
   def new_itinerary_params
