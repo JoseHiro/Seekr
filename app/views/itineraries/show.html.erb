@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div data-controller = "itinerary-show">
   <div style="width: 100%; height: 500px;"
     data-controller="map"
@@ -24,7 +25,7 @@
         We beleive this is the fastest route, but feel free to customize it below.
       </p>
       <div class="d-flex flex-column p-3">
-        <ul data-itinerary-show-target="listProducts">
+        <ul>
           <% @itinerary.products.each do |product| %>
             <a>
             <li style="list-style-type: none;">
@@ -41,10 +42,56 @@
               </div>
 
             </li>
+=======
+<div data-controller="itinerary-show">
+    <div style="width: 100%; height: 500px;"
+      data-controller="map"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div data-itinerary-show-target = "geojson" data-map-target="geojson" data-geojson="" data-trigger="" data-action="change->map#buildRoute"></div>
+    </div>
+    <div class="container">
+      <div class="container mt-3 p-3 card">
+        <div data-itinerary-show-target = "nameContainer">
+          <h1 data-itinerary-show-target="name"><%= @itinerary.name %>&nbsp<span style="font-size:20px" data-action="click->itinerary-show#displayNewNameForm"><i class="fa-solid fa-pencil"></i></span></h1>
+          <%= simple_form_for @itinerary, url: update_element_path(@itinerary, "name") , html: {class: "d-flex flex-row align-content-center justify-content-between d-none", data: { itinerary_show_target: "newNameForm", action: "submit->itinerary-show#updateName"}} do |f| %>
+            <%= f.input :name, label: false %>
+            <input type="hidden" value="<%= @itinerary.id%>" data-itinerary-show-target="itineraryId">
+            <%= f.submit "Change name", class: "btn btn-dark h-50" %>
+>>>>>>> 23b8e9c4af1d3e8ca1df46d7ab40c437458e28ee
           <% end %>
-        </ul>
+        </div>
+        <p>The itinerary is schedualed for <strong><span data-itinerary-show-target="date"><%= @itinerary.saved_itineraries.first.date %></strong></span> <span data-action="click->itinerary-show#displayDateForm" data-itinerary-show-target="datePencil"><i class="fa-solid fa-pencil"></i></span></p>
+        <%= simple_form_for @itinerary.saved_itineraries.first, url: update_element_path(@itinerary.saved_itineraries.first, "date") , html: {class: "d-flex flex-row align-content-center justify-content-between d-none", data: { itinerary_show_target: "dateForm", action: "submit->itinerary-show#updateDate"}} do |f| %>
+            <%= f.input :date, label: false, html5:true %>
+            <input type="hidden" value="<%= @itinerary.saved_itineraries.first.id%>" data-itinerary-show-target="savedItineraryId">
+            <%= f.submit "Save", class: "btn btn-dark h-50" %>
+          <% end %>
+        <p>
+          We beleive this is the fastest route, but feel free to customize it below.
+        </p>
+        <div class="d-flex flex-column p-3">
+          <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRoute map#buildRoute">
+            <% @itinerary.products.each do |product| %>
+              <a>
+              <li style="list-style-type: none;" data-itinerary-show-target="product">
+                <div class="card-product m-3">
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <div class="card-product-infos">
+                    <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
+                    <p><i class="fa-solid fa-location-dot"></i> <%= product.business.address %></p>
+                    <p><i class="fa-solid fa-store"></i> <%= link_to product.business.name, business_path(product.business) %></p>
+                    <input type="hidden" data-itinerary-show-target = "latitude" value="<%=product.business.latitude%>">
+                    <input type="hidden" data-itinerary-show-target = "longitude" value="<%=product.business.longitude%>">
+                  </div>
+                  <div>
+                    <%= link_to "See this product!", product_show_path(product), class: "blue-btn p-2"%>
+                  </div>
+                </div>
+
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <button data-action="click->itinerary-show#getItineraryCoordinates">Test</button>
 </div>

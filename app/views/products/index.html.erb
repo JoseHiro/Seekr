@@ -1,26 +1,56 @@
-<h1>Your products</h1>
-<div class="container d-flex justify-content-center">
-  <div class="d-flex flex-wrap" style="margin-left: 1vw; margin-right: 1vw;">
-    <% @products.each do |product| %>
-      <div class="card" style="width: 20rem; height: 30rem; margin-right: 2vw; margin-left: 2vw; margin-top: 4vh;">
-        <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
-        <div class="card-body">
-          <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
-          <div class="d-flex ">
-            <div class=" align-items-center">
-              <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
-              <% if product.availability  %>
-                <span class="badge bg-success badge-pill badge-success">In stock</span>
-              <% else %>
-                <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
-              <% end %>
+<h1 style="background-color:white; margin: 2vh;">Your products</h1>
+<div  class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
+    <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw;">
+      <% @products.each do |product| %>
+        <div class="card" style="width: 20rem; height: 30rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+          <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <div class="card-body">
+            <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+            <div class="d-flex ">
+              <div class=" align-items-center">
+                <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+                <% if product.availability  %>
+                  <span class="badge bg-success badge-pill badge-success">In stock</span>
+                <% else %>
+                  <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div style="margin-top: 10px">
-            <%= link_to "See/edit this product!", business_product_path(@business, product), class: "blue-btn"%>
-          </div>
-          </div>
-      </div>
-    <% end %>
-  </div>
+            <div style="margin-top: 10px">
+              <%= link_to "See/edit this product!", business_product_path(@business, product), class: "blue-btn"%>
+            </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
 </div>
+<!--<div style="background-color: white;">
+  <% @products.each do |product| %>
+    <div class="d-flex" style="height: 187px; width:90vw; margin: 2vh auto 2vh auto; background-color: white; border: 2px solid #F8F8F8;">
+      <div style="height: 187px; width:150px;">
+        <%= cl_image_tag product.photos[0].key, height: 185, width: 150, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+      </div>
+      <div class="d-flex align-items-center" style="margin-left: 2vw">
+        <div class="d-flex align-items-center" style="flex-direction: column">
+          <p style="font-weight: bold; margin-top: 10px"><span> </span><%= product.name %></p>
+          <p><%= product.brand %></p>
+          <p><%= product.category %></p>
+          <h4>£<%=product.price.round%></h3>
+          <div class="align-items-center">
+            <% if product.availability  %>
+              <span class="badge bg-success badge-pill badge-success">In stock</span>
+            <% else %>
+              <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+            <% end %>
+          </div>
+        </div>
+        <div style="Align-items-right">
+          <div>
+            <%= link_to "See details", business_product_path(@business, product), class: "blue-btn"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%></div>
+</div>-->
