@@ -6,6 +6,10 @@ class ProductsController < ApplicationController
   def show_selected
     @product = Product.find(params[:id])
     @photos = @product.photos
+    @markers = [{
+      lat: @product.latitude,
+      lng: @product.longitude
+    }]
   end
 
   def index
@@ -17,6 +21,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @business = Business.find(params[:business_id])
     @photos = @product.photos
+
+    @markers = [{
+        lat: @product.latitude,
+        lng: @product.longitude
+    }]
   end
 
   def new
@@ -27,6 +36,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @business = Business.find(params[:business_id])
+    @product.latitude = @business.latitude
+    @product.longitude = @business.longitude
     @product.business = @business
     if @product.save
       redirect_to business_product_path(@business, @product)
@@ -40,14 +51,18 @@ class ProductsController < ApplicationController
     @business = @product.business
   end
 
+  def get_distance
+    params[:geo]
+  end
+
   def update
     @business = Business.find(params[:business_id])
     @product = Product.find(params[:id])
-    if @product.update(product_params)
-      redirect_to business_product_path(@business, @product)
-    else
-      render :edit, :unprocessable_entity
-    end
+    # if @product.update(product_params)
+    #   redirect_to business_product_path(@business, @product)
+    # else
+    #   render :edit, :unprocessable_entity
+    # end
   end
 
   def destroy

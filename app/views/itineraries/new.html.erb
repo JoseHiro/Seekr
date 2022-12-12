@@ -1,9 +1,28 @@
-<div class="container m-5 p-3 d-flex flex-column">
-  <h1><%= pluralize(@counter, "Result") %></h1>
-  <br>
-  <div class="d-flex flex-wrap flex-row m-3">
+<h1><%= pluralize(@counter, "Result") %></h1>
+<div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
+  <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw">
+  <%@products = Product.all %>
   <% @products.each do |product| %>
-    <div class="card m-3" style="width: 18rem;">
+    <div class="card" style="width: 20rem; height: 30rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+          <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <div class="card-body">
+            <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+            <div class="d-flex ">
+              <div class=" align-items-center">
+                <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+                <% if product.availability  %>
+                  <span class="badge bg-success badge-pill badge-success">In stock</span>
+                <% else %>
+                  <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+                <% end %>
+              </div>
+            </div>
+              <div style="margin-top: 10px">
+                <%= link_to "Add to my itinerary + ", create_itinerary_path(product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
+              </div>
+          </div>
+        </div>
+    <!--<div class="card m-3" style="width: 18rem;">
       <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="Card image cap">
       <div class="card-body">
         <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
@@ -21,7 +40,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
+
+
   <% end %>
   </div>
 </div>
