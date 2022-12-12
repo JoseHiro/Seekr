@@ -9,9 +9,10 @@ class LocationsController < ApplicationController
     end
   end
 
-  def update
+  def edit
     @location = Location.find(params[:id])
     if @location.update(address_params)
+      raise
       redirect_to root_path, notice: 'Successfully updated !'
     else
       redirect_to root_path, notice: "Sorry we couldn't update your address"

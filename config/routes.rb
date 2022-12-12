@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get "/owner", to: "pages#owner"
 
   resources :users, only: [:show]
   resources :locations, only: [:create, :update]

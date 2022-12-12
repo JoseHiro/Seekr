@@ -1,35 +1,29 @@
 <div style="">
   <% if current_user.location.presence == nil %>
-    <p>
+    <%# <p>
       <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Set current location
       </a>
-    </p>
+    </p> %>
     <div class="collapse" id="collapseExample">
       <%= simple_form_for Location.new, data: {turbo: false} do |f|%>
-      <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-        <div class="form-actions">
-          <%= f.button :submit, "Set address", class:"btn btn-dark" %>
+        <div class="current-location-input-form">
+          <%= f.input :address, class:"", required: true, label:false, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <div class="">
+            <%= f.button :submit, "Set", class:"current-location-input-form-submit btn btn-dark" %>
+          </div>
         </div>
       <% end %>
     </div>
   <% else %>
     <div class="d-flex justify-content-around">
-      <div class="d-flex">
-        <p><i class="me-2 fa-solid fa-location-pin"></i></p>
-        <p><%= current_user.location.address %></p>
-      </div>
-      <p>
-        <a class="btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Change
-        </a>
-      </p>
+
     </div>
-    <div style="margin-left:50px" class="collapse" id="collapseExample">
+    <div style="" class="collapse" id="collapseExample">
     <%= simple_form_for (current_user.location) do |f|%>
-      <div class="d-flex">
-        <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-        <%= f.button :submit, "Set", class:"btn btn-dark", style:"margin-top:31px; margin-bottom:20px;" %>
+      <div class="current-location-input-form">
+        <%= f.input :address, class:"", required: true, label:false, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+        <%= f.button :submit, "Change", class:"current-location-input-form-submit btn btn-dark", style:"" %>
       </div>
     <% end %>
     </div>

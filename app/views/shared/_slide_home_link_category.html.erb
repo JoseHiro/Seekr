@@ -1,5 +1,6 @@
 <div class="home-card-slide col-lg-3 d-flex row flex-row flex-nowrap overflow-auto" style="z-index:10; margin: 0 auto; width: 100%">
-  <%= link_to new_itinerary_path(:filters => {:seek => "sports", :address => current_user.location.address }), style:" width:200px;" do %>
+
+  <%= link_to new_itinerary_path(:filters => {:seek => "sports", :address => @current_location }), style:" width:200px;" do %>
     <div class="corner card" style=" width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="mb-3 card-text">Sports</h5>
@@ -7,7 +8,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/cross-country-race-concept-illustration_114360-9188.jpg?w=1480&t=st=1670523526~exp=1670524126~hmac=5405d09bb95673fe929f8aac4e800eec32143f591f0a401811e0f06cbd02be74" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Medical", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Medical", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Medical</h5>
@@ -15,7 +16,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/medicine-concept-illustration_114360-1555.jpg?w=1480&t=st=1670522060~exp=1670522660~hmac=5adf320261fe70dbefbca468c5defb4da1d1be22081767a87c05c7b988d95b2e" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Clothes", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Clothes", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Clothes</h5>
@@ -23,7 +24,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/flat-hand-drawn-flea-market-illustration_23-2148848377.jpg?size=626&ext=jpg&uid=R87380621&ga=GA1.2.464133550.1670521750&semt=sph" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Tech", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Tech", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Tech</h5>
@@ -31,7 +32,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/isometric-cms-concept_23-2148807389.jpg?w=1480&t=st=1670522201~exp=1670522801~hmac=ff96e4a8ec3210493f32431c4ef59aafe26d8be5fbf5a784bffd1126d6b52561" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Study", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Study", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Study</h5>
@@ -39,7 +40,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/studying-concept-illustration_114360-1107.jpg?w=1480&t=st=1670522234~exp=1670522834~hmac=47a9b60ad6e4cccef576d2932213265ebafcb22a01de134c4dbc4c43a6dbd96d" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Cooking", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Cooking", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Cooking</h5>
@@ -47,7 +48,7 @@
       <img class="mt-3"style="width:100%" src="https://img.freepik.com/free-vector/male-chef-mixing-flour-eggs-dough-with-whisk-hands-happy-man-apron-preparing-homemade-sweet-dessert-table-home-kitchen-flat-vector-illustration-pastry-cooking-recipe-concept_74855-21965.jpg?w=1480&t=st=1670523561~exp=1670524161~hmac=16294fa75dddebe0aed8b2e49d869d4d8b48e1935713edd612c0e985aeb0852b" class="card-img-top" alt="...">
     </div>
   <% end %>
-  <%= link_to new_itinerary_path(:filters => {:seek => "Food", :address => current_user.location.address }), style:"width:200px;" do %>
+  <%= link_to new_itinerary_path(:filters => {:seek => "Food", :address => @current_location }), style:"width:200px;" do %>
     <div class="corner card" style="width: 12rem;">
       <div class="home-card-slidecard-body card-body">
         <h5 class="card-text">Food</h5>
