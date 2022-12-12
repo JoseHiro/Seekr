@@ -1,4 +1,5 @@
-<div id="show-container" style="width: 100vw; background-color:white;">
+<%@user_location = request.location%>
+<div data-controller="user-location" id="show-container" style="width: 100vw; background-color:white;">
   <div class="d-flex justify-content-around">
 
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="height: 35vh; width: 100vw; ">
@@ -89,10 +90,11 @@
     <div class="" style=" width: 95vw; ">
       <div class="m-2" style="bottom: 0; right: 0">
         <div class="mt-1">
-          <h2 style="font-weight: bold"><%=@product.name%></h2>
+          <h2 style="font-weight: bold" data-user-location-product-id-value="<%= @product.id %>"><%=@product.name%></h2>
           <hr>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
+          <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
         </div>
       </div>
       <div class="m-2">
@@ -103,10 +105,10 @@
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex align-items-center">
             <div class="m-1">
-              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn", style: "padding: 5px;"%>
             </div>
             <div class="m-1">
-              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "padding: 5px !important;"%>
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "padding: 5px;"%>
             </div>
             <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
           </div>
