@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   patch "/my_itineraries/:id/update/:element", to: "itineraries#update_element", as: "update_element"
   post "my_itineraries/product/:product_id/:itinerary_id/add", to: "itineraries#add_product_to_itinerary", as: "add_product_to_itinerary"
   delete "my_itineraries/product/:product_id/:itinerary_id/remove", to: "itineraries#remove_product_of_itinerary", as: "remove_product_of_itinerary"
+  get "my_itineraries/:itinerary_id/get_itinerary", to: "itineraries#itinerary_route", as: "itinerary_route"
 end

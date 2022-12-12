@@ -24,7 +24,7 @@
         We beleive this is the fastest route, but feel free to customize it below.
       </p>
       <div class="d-flex flex-column p-3">
-        <ul>
+        <ul data-itinerary-show-target="listProducts">
           <% @itinerary.products.each do |product| %>
             <li style="list-style-type: none;">
               <div class="card-product m-3">
@@ -41,4 +41,5 @@
       </div>
     </div>
   </div>
+  <button data-action="click->itinerary-show#getItineraryCoordinates">Test</button>
 </div>
