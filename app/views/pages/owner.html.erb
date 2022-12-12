@@ -1,0 +1,18 @@
+<div class="owner-page">
+  <h2>Business mode</h2>
+  <div style="width:500px">
+    <%= simple_form_for new_business_path(@business) do |f|%>
+      <%= f.input :address,
+                  input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+                  wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+      <%= f.input :name %>
+      <%= f.input :category, collection: @category_list %>
+      <%= f.input :opening_time, as: :time, html5: true %>
+      <%= f.input :closing_time, as: :time, html5: true %>
+      <%= f.input :description %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
+    <% end %>
+  </div>
+
+</div>

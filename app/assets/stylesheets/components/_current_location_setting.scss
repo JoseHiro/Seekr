@@ -1,0 +1,55 @@
+.current-location-input-form {
+  display: flex !important;
+}
+
+.current-location-input-form-submit {
+  position: relative;
+  right: 20px;
+  z-index: 30;
+  height: 37px;
+  border-radius: 0 15px 15px 0;
+}
+
+@media screen and (max-width: 480px){
+  .current-location-btn {
+
+  }
+}
+
+
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .location-detail{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .current-location-input-form {
+    margin-left:50px
+  }
+
+  .current-location-btn {
+    margin-top: 30px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .location-detail{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .current-location-input-form {
+    margin-left:50px
+  }
+
+  .current-location-btn {
+    margin-top: 30px;
+    margin-left: 20px;
+  }
+
+  .seek-search {
+    border-radius: 0;
+  }
+
+}
