@@ -72,7 +72,7 @@
             <div class="m-1">
               <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
-            <h2><i class="fa-solid fa-tag ms-1" ></i> £<%= @product.price.round%></h2>
+            <h2><i class="fa-solid fa-tag" ></i> £<%= @product.price.round%></h2>
           </div>
 
         <% else %>
