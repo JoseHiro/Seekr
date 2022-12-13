@@ -11,11 +11,14 @@
 // Your CSS partials
 @import "components/index";
 @import "components/slidebar";
-
-@import "pages/index";
+@import "components/current_location_setting";
+@import "components/search_engine";
 
 // specific page
+@import "pages/index";
 @import "pages/signed_in";
+@import "pages/owner";
+
 
 // Where we can share common elements
 @import "components/general";
