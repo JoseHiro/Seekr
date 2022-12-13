@@ -73,7 +73,7 @@ Rails.application.configure do
 
   class ActionDispatch::Request
     def ip
-      "89.92.200.59"
+      return "89.92.200.59"
     end
   end
 end

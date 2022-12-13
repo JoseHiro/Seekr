@@ -46,11 +46,16 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @photos = @business.photos
+    @markers = [{
+      lat: @business.latitude,
+      lng: @business.longitude
+  }]
   end
 
   private
 
   def business_params
-    params.require(:business).permit(:name, :address, :opening_time, :closing_time, :status, :category, :description)
+    params.require(:business).permit(:name, :address, :opening_time, :closing_time, :status, :category, :description, photos: [])
   end
 end
