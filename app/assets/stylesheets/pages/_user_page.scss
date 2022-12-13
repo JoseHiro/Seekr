@@ -1,0 +1,41 @@
+
+.user-image-button-container {
+  border: solid 2px #FFE066;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 480px){
+  .show-image {
+    height: 200px; width: 200px;
+  }
+
+  .user-show-image-container {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .user-show-container {
+  }
+
+  .user-show-image-container {
+    text-align: center;
+  }
+
+
+  .show-image {
+    height: 300px; width: 300px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .show-image {
+    height: 300px; width: 300px;
+  }
+
+  .user-show-container {
+    display:flex;
+  }
+}

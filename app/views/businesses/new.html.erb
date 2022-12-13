@@ -1,17 +1,24 @@
- <div class="container">
-  <h1>New business</h1>
-  <div class="container card border p-3 w-100">
-    <%= simple_form_for(@business) do |f|%>
-    <%= f.input :address,
-                input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
-                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-    <%= f.input :name %>
-    <%= f.input :category, collection: @category_list %>
-    <%= f.input :opening_time, as: :time, html5: true %>
-    <%= f.input :closing_time, as: :time, html5: true %>
-    <%= f.input :description %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
-    <% end %>
+<div class="owner-page">
+  <div class="owner-page-message">
+    <h1>This is your opportunity</h1>
+    <h2>Run your business</h2>
   </div>
- </div>
+  <div class="new-business-form" style="">
+      <div class="row d-flex justify-content-center">
+        <div class="col-10 mt-3 mb-3">
+            <%= simple_form_for(@business) do |f|%>
+            <%= f.input :address,
+                        input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+                        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+            <%= f.input :name %>
+            <%= f.input :category, collection: @category_list %>
+            <%= f.input :opening_time, as: :time, html5: true %>
+            <%= f.input :closing_time, as: :time, html5: true %>
+            <%= f.input :description %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
+            <% end %>
+        </div>
+      </div>
+    </div>
+</div>
