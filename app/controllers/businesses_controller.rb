@@ -48,6 +48,11 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @photos = @business.photos
+    @markers = [{
+      lat: @business.latitude,
+      lng: @business.longitude
+  }]
   end
 
   private
