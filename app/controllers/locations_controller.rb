@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
 
   def create
+
     @location = Location.new(address:params[:location][:address], user_id:current_user.id)
     if @location.save
       redirect_to root_path, notice: 'Successfully address has been set !'
@@ -10,6 +11,10 @@ class LocationsController < ApplicationController
   end
 
   def update
+    if params[:location][:address] == current_user.location.address
+      redirect_to root_path, notice: "Sorry we couldn't update your address"
+    end
+
     @location = Location.find(params[:id])
     if @location.update(address_params)
       redirect_to root_path, notice: 'Successfully updated !'

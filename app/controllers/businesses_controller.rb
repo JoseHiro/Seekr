@@ -12,7 +12,9 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    @business.owner = current_user
+    @owner = current_user
+    @business.owner = @owner
+
     if @business.save
       redirect_to businesses_path
     else

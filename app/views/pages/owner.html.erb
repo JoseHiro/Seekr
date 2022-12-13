@@ -1,0 +1,27 @@
+<div class="owner-page">
+  <div class="owner-page-message">
+    <h1>This is your opportunity</h1>
+    <h2>Run your business</h2>
+  </div>
+  <div class="new-business-form" style="">
+    <div class="container marketing">
+      <div class="row d-flex justify-content-center">
+       <div class="col-10 mt-4 mb-4">
+        <%= simple_form_for @business, url: post_business_path, data: {turbo: false} do |f|%>
+          <%= f.input :address,
+                      input_html: {data: {address_autocomplete_target: "address"}, class: "d-none business-address-search"},
+                      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <%= f.input :name %>
+          <%= f.input :category, collection: @category_list %>
+          <%= f.input :opening_time, as: :time, html5: true %>
+          <%= f.input :closing_time, as: :time, html5: true %>
+          <%= f.input :description %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.submit "Make my business seekable", class: "btn btn-dark"%>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

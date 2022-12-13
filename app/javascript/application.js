@@ -2,7 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-
-
-
-
+// import "components/previewImageOnFileSelect"

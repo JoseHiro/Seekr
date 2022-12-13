@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get "/owner", to: "pages#owner"
 
   resources :users, only: [:show]
   resources :locations, only: [:create, :update]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
   resources :businesses do
     resources :products
   end
+
+  post "/businesses", to: "business#create", as: "post_business"
 
   get "/products", to: "products#list_all"
   get "/products/:id", to: "products#show_selected", as: "product_show"

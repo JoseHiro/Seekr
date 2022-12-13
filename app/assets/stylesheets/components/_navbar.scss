@@ -10,3 +10,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+@media screen and (max-width: 480px){
+  .icon-nav {
+    display: none;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .humberger-nav {
+    display: none;
+  }
+}
+@media screen and (min-width: 960px) {
+  .humberger-nav {
+    display: none;
+  }
+
+}
