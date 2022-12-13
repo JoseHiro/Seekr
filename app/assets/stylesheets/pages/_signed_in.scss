@@ -20,6 +20,52 @@
   height: 32px;
 }
 
+@keyframes shiny {
+  0% {
+      transform: scale(0) rotate(25deg);
+      opacity: 0;
+  }
+
+  50% {
+      transform: scale(1) rotate(25deg);
+      opacity: 1;
+  }
+
+  100% {
+      transform: scale(50) rotate(25deg);
+      opacity: 0;
+  }
+}
+
+.shiny {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #FFE066;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.shiny::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 50px;
+  height: 50px;
+  background-image: linear-gradient(100deg,  rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 0) 0%);
+  animation-name: shiny;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+
 
 .form-control {
   border-radius: 15px
