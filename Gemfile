@@ -51,13 +51,6 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-<<<<<<< HEAD
-=======
-gem "geocoder"
-
-gem "jbuilder"
-
->>>>>>> master
 gem "pry-byebug"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
