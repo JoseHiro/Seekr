@@ -1,4 +1,4 @@
-<div class="container p-4">
+<div class="container p-1 m-1">
   <h1><%= pluralize(@counter, "Result") %></h1>
   <div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
     <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw">
@@ -26,11 +26,11 @@
           </div>
     <% end %>
     <% else %>
-    <div class="container d-flex justify-content-center">
-      <img class="no_content-image"src="https://res.cloudinary.com/djamfh5f6/image/upload/v1669755459/1491381-fococlipping-standard_tphv07.png" alt="Popeye thinking">
-      <div class="align-self-center m-5 d-flex flex-column">
+    <div class="container d-flex justify-content-center" style="height: 65vh">
+      <div class="align-self-center d-flex flex-row align-items-center">
+      <img class="no_content-image m-2" src="https://res.cloudinary.com/djamfh5f6/image/upload/v1669755459/1491381-fococlipping-standard_tphv07.png" alt="Popeye thinking">
       <h3 class="mb-4" style="text-align:center">Sorry! No results found :( </h3>
-      </div>
+    </div>
     </div>
     <% end %>
 

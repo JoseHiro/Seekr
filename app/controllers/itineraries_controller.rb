@@ -25,6 +25,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @stops = @itinerary.stops
   end
 
   def index
