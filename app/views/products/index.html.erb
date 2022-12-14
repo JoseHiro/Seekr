@@ -12,9 +12,13 @@
   </div>
   <% end %>
 </div>
-
-<div class="m-4">
-  <%= link_to "Go back to business!", business_path(Business.find(@business)), class: "blue-btn"%>
+<div class="d-flex justify-content-center" style="width: 100vw; margin-top: 10px">
+  <div class="m-2">
+    <%= link_to "Go back to business!", business_path(Business.find(@business)), class: "blue-btn"%>
+  </div>
+  <div class="m-2">
+    <%= link_to "Add more items!", new_business_product_path, class: "blue-btn"%>
+  </div>
 </div>
 
 <div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
@@ -26,7 +30,7 @@
             <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
             <div class="d-flex ">
               <div class=" align-items-center">
-                <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+                <h5><span><i class="fa-solid fa-tag"></i></span> £<%= product.price.round %></h5>
                 <% if product.availability  %>
                   <span class="badge bg-success badge-pill badge-success">In stock</span>
                 <% else %>
