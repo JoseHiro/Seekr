@@ -1,7 +1,10 @@
- <div class="container">
+<div class="m-4">
+  <%= link_to "Go back to business!", business_path(@business), class: "blue-btn"%>
+</div>
+<div class="container">
   <h1>Edit business</h1>
   <div class="container card border p-3">
-     <%= simple_form_for(@business) do |f|%>
+    <%= simple_form_for(@business) do |f|%>
     <%= f.input :address,
                 input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
                 wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
@@ -11,7 +14,7 @@
     <%= f.input :closing_time, as: :time, html5: true %>
     <%= f.input :description %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit "Edit my business", class: "btn btn-primary"%>
+    <%= f.submit "Edit my business", class: "btn btn-primary", style: "background-color: #2997D8; border: 1px solid #2997D8; border-radius: 0px !important"%>
     <% end %>
   </div>
- </div>
+</div>

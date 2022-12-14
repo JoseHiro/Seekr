@@ -1,4 +1,7 @@
-<div class="container">
+<div class="m-4">
+  <%= link_to "Go Back to product", business_product_path([@business, @product]), class: "blue-btn"%>
+</div>
+<div class="container" style="margin-bottom: 2vh">
   <h1>Edit <%= @product.name%></h1>
   <%= simple_form_for([@business, @product]) do |f| %>
         <%= f.input :name %>
@@ -8,6 +11,6 @@
         <%= f.input :description %>
         <%= f.input :availability %>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-        <%= f.submit class: "btn btn-dark" %>
+        <%= f.submit class: "btn btn-primary", style: "background-color: #2997D8; border: none; border-radius: 0px !important" %>
       <% end %>
 </div>
