@@ -19,28 +19,43 @@ export default class extends Controller {
     // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
     //   mapboxgl: mapboxgl }))
     this.#validateData();
+    const stops = this.geojsonTarget.dataset["setpoints"]
+    this.#fitMapToMarkers(this.#toArray(stops))
   }
 
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
-      newMarker = new mapboxgl.Marker()
-        .setLngLat([marker.lng, marker.lat])
-        .addTo(this.map);
+  #addMarkersToMap(markers) {
+    markers.forEach((marker) => {
+      // const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      const newMarker = document.createElement("div")
+      newMarker.className = "marker"
+      newMarker.style.backgroundSize = "contain"
+      newMarker.style.backgroundRepeat = "no-repeat"
+      newMarker.style.width = "35px"
+      newMarker.style.height = "35px"
+      if (markers[0] === marker){
+        newMarker.style.backgroundImage = `url('https://www.freepnglogos.com/uploads/pin-png/flat-design-map-pin-transparent-png-stickpng-18.png')`
+      } else{
+        newMarker.style.backgroundImage = `url('https://icones.pro/wp-content/uploads/2021/02/icone-de-broche-de-localisation-verte.png')`
+      }
+        new mapboxgl.Marker(newMarker)
+        .setLngLat([ marker[0], marker[1] ])
+        // .setPopup(popup)
+        .addTo(this.map)
+
     });
   }
 
-  #fitMapToMarkers() {
+  #fitMapToMarkers(stops) {
     const bounds = new mapboxgl.LngLatBounds();
-    this.markersValue.forEach((marker) =>
-      bounds.extend([marker.lng, marker.lat])
-    );
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+      stops.forEach((marker) =>{
+      console.log(marker)
+      bounds.extend([marker[0], marker[1]])
+  });
+    this.map.fitBounds(bounds, { padding: 70, duration: 5000 });
   }
 
   async #validateData() {
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-    console.log("times");
     if (this.geojsonTarget.dataset["trigger"] === "true") {
       this.buildRoute();
       this.geojsonTarget.dataset["trigger"] = false;
@@ -50,34 +65,50 @@ export default class extends Controller {
   }
 
   buildRoute() {
-    const geojson = JSON.parse(this.geojsonTarget.dataset["geojson"]);
-    this.setRoute(geojson);
+    const geojson = JSON.parse(this.geojsonTarget.dataset["geojson"])
+    const stops = this.geojsonTarget.dataset["setpoints"]
+    if (this.map._markers.length > 0){
+      this.map._markers.forEach((marker) => {
+        marker.remove()
+      })
+    }
+    this.setRoute(geojson)
+    this.#addMarkersToMap(this.#toArray(stops))
+    this.#fitMapToMarkers(this.#toArray(stops))
   }
 
   setRoute(geojson) {
-    console.log(this.map.getStyle().layers)
     if (this.map.getSource("route")) {
-      console.log("esto es if")
       this.map.getSource("route").setData(geojson);
     } else {
-      console.log(geojson)
       this.map.addSource('route', {
         'type': 'geojson',
         'data': geojson
         });
-        this.map.addLayer({
-          'id': 'route',
-          'type': 'line',
-          'source': 'route',
-          'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-          },
-          'paint': {
-          'line-color': '#0C8CE9',
-          'line-width': 3
-          }
-          });
+      this.map.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'route',
+        'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+        },
+        'paint': {
+        'line-color': '#0C8CE9',
+        'line-width': 4
+        }
+        });
     }
+  }
+  // NOTE guys:
+  // This method ONLY works to create the markers array for above methods logic using the coordinates of these retrieved from the HTML.
+  // It doesn´t convert strings separated with commas to an array.
+  #toArray(inputArray){
+    let array = []
+    const splitArray = inputArray.split(",")
+    for(let i=0; i < splitArray.length; i+=2){
+      array.push([splitArray[i], splitArray[i + 1]])
+    }
+    return array
   }
 }

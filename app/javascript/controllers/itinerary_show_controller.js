@@ -5,8 +5,9 @@ import Sortable from "sortablejs"
 export default class extends Controller {
   connect() {
     this.sortable()
+    this.getRoute("cycling")
   }
-  static targets = ["newNameForm", "nameContainer", "name", "itineraryId", "date", "dateForm", "datePencil", "savedItineraryId", "listProducts", "product", "geojson"]
+  static targets = ["newNameForm", "nameContainer", "name", "itineraryId", "date", "dateForm", "datePencil", "savedItineraryId", "listProducts", "product", "geojson", "userCurrentLocation"]
 
   updateDate(event){
     event.preventDefault()
@@ -69,13 +70,20 @@ export default class extends Controller {
     liElements.forEach((element) => {
       const latitude = element.childNodes[1].childNodes[1].childNodes[7].defaultValue
       const longitude = element.childNodes[1].childNodes[1].childNodes[9].defaultValue
-      coordinates.push([longitude, latitude])
+      if (latitude > -90 && latitude < 90 && element.classList.value !== "sortable-chosen sortable-fallback sortable-drag"){
+        coordinates.push([longitude, latitude])
+      }
     })
+    const userLocation = this.userCurrentLocationTarget.value.split(",")
+    coordinates.unshift([userLocation[0], userLocation[1]])
+
     return coordinates
   }
-
-  getRoute(){
+x
+  getRoute(via){
+    console.log(via)
     const coordinates = this.getItineraryCoordinates()
+    this.geojsonTarget.dataset["setpoints"] = coordinates
     let query = ""
     for(let i=0; i<coordinates.length; i+=1){
       if (coordinates.length - 1 === i){
@@ -84,7 +92,7 @@ export default class extends Controller {
         query += `${coordinates[i][0]},${coordinates[i][1]};`
       }
     }
-    const url = `https://api.mapbox.com/directions/v5/mapbox/cycling/${query}?geometries=geojson&access_token=pk.eyJ1IjoiZXMyMDI1NDYiLCJhIjoiY2xhY3loaXBxMGVmejNwbWwzY3VoNGl3eSJ9.-GjBpqFJ0tTEry0EBCLNfQ`
+    const url = `https://api.mapbox.com/directions/v5/mapbox/${via}/${query}?geometries=geojson&access_token=pk.eyJ1IjoiZXMyMDI1NDYiLCJhIjoiY2xhY3loaXBxMGVmejNwbWwzY3VoNGl3eSJ9.-GjBpqFJ0tTEry0EBCLNfQ`
     fetch(url)
     .then(response => response.json())
     .then((json) => {
@@ -101,5 +109,16 @@ export default class extends Controller {
       this.geojsonTarget.dataset["geojson"] = JSON.stringify(geojson)
       this.geojsonTarget.dataset["trigger"] = true
     })
+  }
+  getRouteForCar(){
+    this.getRoute("driving")
+  }
+
+  getRouteForWalking(){
+    this.getRoute("walking")
+  }
+
+  getRouteForCycling(){
+    this.getRoute("cycling")
   }
 }

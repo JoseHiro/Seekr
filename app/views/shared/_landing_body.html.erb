@@ -8,7 +8,7 @@
 
           <%# page 1 %>
           <div class="carousel-item active container-fluid carousel-item1">
-            <div class="d-flex ">
+            <div class="carousel-item1-product-text">
               <div class="product-lineup">
                 <%# <img style="width:400px; height:300px"src="https://images.pexels.com/photos/2415935/pexels-photo-2415935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""> %>
                 <div class="mb-2">
@@ -30,9 +30,12 @@
                 </div>
               </div>
 
+              <h4 style="" class="testimonial-text-mobile">You no longer have to wonder around the streets. Seek it, and it's right there</h4>
+
               <div>
-                <h4 style="" class="mt-2 mb-2 testimonial-text1">You no longer have to wonder around the streets. Seek it, and it's right there</h4>
-                <div>
+                <h4 style="" class="testimonial-text1">You no longer have to wonder around the streets. Seek it, and it's right there</h4>
+
+                <div class="carousel-item1-buttons">
                   <%= link_to "Signup", new_user_registration_path, class:"btn btn-light" %>
                   <%= link_to "Login", new_user_session_path, class: "me-2 btn btn-light" %>
                 </div>
@@ -44,13 +47,14 @@
           <%# page 2 %>
           <div class="carousel-item carousel-item2 container-fluid">
             <div class="carousel-item2-items">
-              <%= cl_image_tag("dfukniqn3auawithsdih", width: 400, height: 250, class:"mac-image") %>
+              <h4 style="" class="carousel-item2-text-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, reiciendis delectus cum nostrum fug</h4>
+              <%= cl_image_tag("dfukniqn3auawithsdih", class:"mac-image") %>
               <h4 style="color:white" class="carousel-item2-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, reiciendis delectus cum nostrum fug</h4>
             </div>
           </div>
 
           <div style="background-color:white;" class="carousel-item carousel-item3 container-fluid">
-            <div class="container">
+            <div class="body-card-container container">
               <div class="card" style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px;">
                 <div class="face face1">
                   <div class="content">
@@ -100,11 +104,11 @@
         </div>
 
           <button class="carousel-control-prev" type="button" href="#testimonial-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+            <span style="background-color:#333" class="corner carousel-control-prev-icon"></span>
           </button>
 
-          <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+          <button class="carousel-control-next " type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
+            <span style="background-color:#333" class="corner carousel-control-next-icon"></span>
           </button>
      </div>
     </div>

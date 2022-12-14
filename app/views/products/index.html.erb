@@ -1,4 +1,18 @@
-<h1 style="background-color:white; margin: 2vh;">Your products</h1>
+<div class="banner d-flex align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
+  <% if current_user == Business.find(@business).owner%>
+  <div id="banner-content"class="d-flex justify-content-center px-5">
+    <h1 style="width: 25vw;">Products from <%=Business.find(@business).name%>! <br> Your highstreet products, now seekable with the world's best!</h1>
+  </div>
+  <% else %>
+
+  <div class="container">
+    <h1>Products from <%=Business.find(@business).name%></h1>
+    <p>Search through the world's best products, find them nearby!</p>
+  </div>
+  <% end %>
+</div>
+
+
 <div  class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
     <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw;">
       <% @products.each do |product| %>
@@ -25,32 +39,3 @@
     </div>
 
 </div>
-<!--<div style="background-color: white;">
-  <% @products.each do |product| %>
-    <div class="d-flex" style="height: 187px; width:90vw; margin: 2vh auto 2vh auto; background-color: white; border: 2px solid #F8F8F8;">
-      <div style="height: 187px; width:150px;">
-        <%= cl_image_tag product.photos[0].key, height: 185, width: 150, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
-      </div>
-      <div class="d-flex align-items-center" style="margin-left: 2vw">
-        <div class="d-flex align-items-center" style="flex-direction: column">
-          <p style="font-weight: bold; margin-top: 10px"><span> </span><%= product.name %></p>
-          <p><%= product.brand %></p>
-          <p><%= product.category %></p>
-          <h4>£<%=product.price.round%></h3>
-          <div class="align-items-center">
-            <% if product.availability  %>
-              <span class="badge bg-success badge-pill badge-success">In stock</span>
-            <% else %>
-              <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
-            <% end %>
-          </div>
-        </div>
-        <div style="Align-items-right">
-          <div>
-            <%= link_to "See details", business_product_path(@business, product), class: "blue-btn"%>
-          </div>
-        </div>
-      </div>
-    </div>
-  <%end%></div>
-</div>-->

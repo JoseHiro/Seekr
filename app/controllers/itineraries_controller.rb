@@ -1,7 +1,6 @@
 class ItinerariesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:add_product_to_itinerary, :remove_product_of_itinerary]
-
   def new
     seek = params[:filters].nil? ? "" : params[:filters][:seek]
     address = params[:filters].nil? ? "" : params[:filters][:address]
@@ -17,7 +16,7 @@ class ItinerariesController < ApplicationController
       saved_itinerary = SavedItinerary.new(itinerary: @itinerary, user: current_user, date: Date.today)
       if saved_itinerary.save
         product_itinerary = ProductItinerary.new(itinerary: @itinerary, product: @product)
-        redirect_to my_itineraries_path(@itinerary) if product_itinerary.save
+        redirect_to add_products_path(@itinerary) if product_itinerary.save
       else
         redirect_to root_path
       end

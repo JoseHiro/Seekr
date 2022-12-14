@@ -1,18 +1,19 @@
 
-<div style="background-color: #2997D8; " class="d-flex justify-content-center">
-  <div class="" style="text-align:center">
+<div style="background-color: #2997D8;" class="d-flex justify-content-center">
+  <div class="landing-header-container" style="text-align:center">
+    <div>
     <h2 style=" font-weight: bold; color:white; margin-top:130px ">Find anything on the highstreet</h2>
 
       <div class="" style=" width: 400px;">
         <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
           <%= f.input :seek, label:false, placeholder:"Seek any product"%>
-          <%= f.input :address, label:false,  input_html: {data: {address_autocomplete_target: "Where"}, class: "d-none"},wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+          <%= f.input :address, label:false,  input_html: { class: "d-none iben", data: {address_autocomplete_target: "Where"}},wrapper_html: {class: "iben" ,data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
           <%= button_tag type: 'submit', class:"btn" do %>
             <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
-        </div>
         <% end %>
       </div>
-    <%= cl_image_tag("mxisvfhwx3skmxad3fh7", width: 250, height: 500, class:"iphone-image ms-4 mt-4") %>
+    </div>
+    <%= cl_image_tag("mxisvfhwx3skmxad3fh7", class:"iphone-image ms-4 mt-4") %>
   </div>
 </div>

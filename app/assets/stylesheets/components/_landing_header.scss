@@ -1,17 +1,32 @@
 @media screen and (max-width: 480px){
-}
-@media screen and (min-width: 481px) and (max-width: 959px) {
   .iphone-image {
+    width: 150px;
+    height: 300px;
+    padding-bottom: 40px;
+    transform: rotate(15deg);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .landing-header-container {
+    display: flex;
+  }
+
+  .iphone-image {
+    width: 250px;
+    height: 500px;
     transform: rotate(15deg);
   }
 
-  .iphone-image:hover {
-    transform: rotate(25deg);
-  }
-
 }
+
 @media screen and (min-width: 960px) {
+  .landing-header-container {
+    display: flex;
+  }
   .iphone-image {
+    width: 250px;
+    height: 500px;
     transform: rotate(15deg);
   }
 

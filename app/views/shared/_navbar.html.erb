@@ -8,8 +8,9 @@
         <!-- The following form displays if adding more products -->
         <% if controller_name == "itineraries" && action_name == "add_products" %>
           <%= simple_form_for :filters, method: :get do |f| %>
-            <%= f.input :seek, placeholder: 'Categories, product name..', style:"border-radius: 25px 0px 0px 25px;", label: false, class:"seek-search" %>
-            <div class="d-flex" style="" >
+            <div class="d-flex">
+              <%= f.input :seek, input_html: {class: "seek-search"}, placeholder: 'Categories, product name..', label: false %>
+              <div class="d-flex" style="height: 37px;" >
               <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
               <%= button_tag type: 'submit', class:"glass-btn btn me-5" do %>
                 <i style="" class="fa-solid fa-magnifying-glass"></i>
