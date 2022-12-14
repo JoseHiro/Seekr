@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="banner d-flex align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
   <div id="banner-content" class="container">
     <h1>Products we've found for <%=current_user.first_name%> </h1>
@@ -26,8 +27,34 @@
                 <% else %>
                   <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
                 <% end %>
+=======
+<div class="container p-1 m-1">
+  <h1><%= pluralize(@counter, "Result") %></h1>
+  <div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
+    <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw">
+
+    <% if @counter > 0 %>
+    <% @products.each do |product| %>
+      <div class="card" style="width: 20rem; height: 30rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+            <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+            <div class="card-body">
+              <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+              <div class="d-flex ">
+                <div class=" align-items-center">
+                  <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+                  <% if product.availability  %>
+                    <span class="badge bg-success badge-pill badge-success">In stock</span>
+                  <% else %>
+                    <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+                  <% end %>
+                </div>
+>>>>>>> origin
               </div>
+                <div style="margin-top: 10px">
+                  <%= link_to "Add to my itinerary + ", create_itinerary_path(product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
+                </div>
             </div>
+<<<<<<< HEAD
               <div style="margin-top: -3px;">
                 <%= link_to "See up close!", product_show_path(product), class: "blue-btn" %>
               </div>
@@ -37,5 +64,19 @@
           </div>
         </div>
   <% end %>
+=======
+          </div>
+    <% end %>
+    <% else %>
+    <div class="container d-flex justify-content-center" style="height: 65vh">
+      <div class="align-self-center d-flex flex-row align-items-center">
+      <img class="no_content-image m-2" src="https://res.cloudinary.com/djamfh5f6/image/upload/v1669755459/1491381-fococlipping-standard_tphv07.png" alt="Popeye thinking">
+      <h3 class="mb-4" style="text-align:center">Sorry! No results found :( </h3>
+    </div>
+    </div>
+    <% end %>
+
+    </div>
+>>>>>>> origin
   </div>
 </div>

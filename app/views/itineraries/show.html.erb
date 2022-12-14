@@ -2,7 +2,8 @@
     <div style="width: 100%; height: 500px;"
       data-controller="map"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      <div data-itinerary-show-target = "geojson" data-map-target="geojson" data-geojson="" data-trigger="" data-action="change->map#buildRoute"></div>
+      <div data-itinerary-show-target = "geojson" data-map-target="geojson" data-geojson="" data-trigger="" data-setpoints="" data-action="change->map#buildRoute"></div>
+      <input type="hidden" data-itinerary-show-target="userCurrentLocation" value="<%=current_user.location.longitude%>,<%=current_user.location.latitude%>">
     </div>
     <div class="container">
       <div class="container mt-3 p-3 card">
@@ -21,13 +22,29 @@
             <%= f.submit "Save", class: "btn btn-dark h-50" %>
           <% end %>
         <p>
-          We beleive this is the fastest route, but feel free to customize it below.
+         <div class="d-flex flex-row justify-content-between p-3">
+           <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary" %>
+           <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary" %>
+         </div>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="radio" name="options" autocomplete="off" data-action= "click->itinerary-show#getRouteForWalking">
+                Walking <i class="fa-solid fa-person-walking"></i>
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" autocomplete="off" checked data-action= "click->itinerary-show#getRouteForCycling">
+                Cycling <i class="fa-solid fa-bicycle"></i>
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" autocomplete="off" data-action= "click->itinerary-show#getRouteForCar">
+                Car <i class="fa-solid fa-car"></i>
+            </label>
+          </div>
         </p>
         <div class="d-flex flex-column p-3">
-          <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRoute map#buildRoute">
+          <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRouteForCycling">
             <% @itinerary.products.each do |product| %>
-              <a>
-              <li style="list-style-type: none;" data-itinerary-show-target="product">
+              <li style="list-style-type: none;" data-itinerary-show-target="product" data-type="product">
                 <div class="card-product m-3">
                   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                   <div class="card-product-infos">
@@ -41,7 +58,22 @@
                     <%= link_to "See this product!", product_show_path(product), class: "blue-btn p-2"%>
                   </div>
                 </div>
+              </li>
+            <% end %>
+            <% @stops.each do |stop|%>
+             <li style="list-style-type: none;" data-itinerary-show-target="stop" data-type="stop">
+                <div class="card-product m-3">
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <div class="card-product-infos">
+                    <h2><%=stop.name%></h2>
+                    <p><i class="fa-solid fa-location-dot"></i> <%= stop.address %></p>
+                    <input type="hidden" data-itinerary-show-target = "latitude" value="<%=stop.latitude%>">
+                    <input type="hidden" data-itinerary-show-target = "longitude" value="<%=stop.longitude%>">
+                  </div>
+                  <div>
 
+                  </div>
+                </div>
               </li>
             <% end %>
           </ul>

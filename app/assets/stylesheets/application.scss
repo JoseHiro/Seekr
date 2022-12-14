@@ -13,6 +13,9 @@
 @import "components/slidebar";
 @import "components/current_location_setting";
 @import "components/search_engine";
+@import "components/landing_header";
+@import "components/landing_body";
+
 
 // specific page
 @import "pages/index";
@@ -21,9 +24,6 @@
 @import "pages/user_page";
 
 
+
 // Where we can share common elements
 @import "components/general";
-
-body {
-  background-color: white !important ;
-}
