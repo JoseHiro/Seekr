@@ -61,6 +61,10 @@
 }
 
 @media screen and (min-width: 960px) {
+  #narrow-price{
+    display:none;
+  }
+
   #info-container-picture-business-product-show{
     width: 40vw !important;
     margin-left: 2vw;
