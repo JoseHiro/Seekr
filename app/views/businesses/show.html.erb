@@ -65,18 +65,23 @@
 
       <div id="wide-buttons" style="margin-top: 10px; margin-left: -4.5px;">
         <% if current_user && current_user == @business.owner %>
-          <div class="d-flex">
-            <div class="m-1">
-              <%= link_to "Go back to businesses!", businesses_path, class: "blue-btn"%>
+          <div class="">
+            <div class="d-flex" style="margin-bottom: 15px">
+              <div class="m-1">
+                <%= link_to "Go back to businesses!", businesses_path, class: "blue-btn"%>
+              </div>
+              <div class="m-1">
+                <%= link_to "Edit your business details!", edit_business_path(@business), class: "blue-btn"%>
+              </div>
+              <div class="m-1">
+                <%= link_to "See products!", business_products_path(@business), class: "blue-btn"%>
+              </div>
             </div>
-            <div class="m-1">
-              <%= link_to "Edit your business details!", edit_business_path(@business), class: "blue-btn"%>
-            </div>
-            <div class="m-1">
-              <%= link_to "See products!", business_products_path(@business), class: "blue-btn"%>
-            </div>
-            <div class="m-1">
-              <%= link_to "Delete", businesses_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+            <div class="d-flex">
+              <div class="m-1">
+                <%= link_to "Delete", business_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "background-color: red"%>
+              </div>
+
             </div>
           </div>
         <% else %>
@@ -109,20 +114,12 @@
       </div>
       <div id="narrow-buttons">
         <% if current_user && current_user == @business.owner %>
-          <div class="d-flex align-items-center" style="margin-bottom: 2vh">
-            <div class="m-1">
-              <%= link_to "Edit business!", edit_business_path(@business), class: "blue-btn" %>
-            </div>
-            <div class="m-1">
-              <%= link_to "See products!", business_products_path(@business), class: "blue-btn" %>
-            </div>
-          </div>
           <div class="d-flex align-items-center">
             <div class="m-1">
-              <%= link_to "Back to businesses!", businesses_path, class: "blue-btn" %>
+              <%= link_to "Edit your business details!", edit_business_path(@business), class: "blue-btn", style: "padding: 5px;"%>
             </div>
             <div class="m-1">
-              <%= link_to "Delete business!", business_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn" %>
+              <%= link_to "Delete", business_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "padding: 5px;"%>
             </div>
           </div>
         <% else %>

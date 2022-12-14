@@ -43,7 +43,7 @@ class BusinessesController < ApplicationController
   end
 
   def index
-    @businesses = Business.all
+    @businesses = current_user.businesses
   end
 
   def show
