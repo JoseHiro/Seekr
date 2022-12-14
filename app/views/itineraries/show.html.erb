@@ -44,8 +44,7 @@
         <div class="d-flex flex-column p-3">
           <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRouteForCycling">
             <% @itinerary.products.each do |product| %>
-              <a>
-              <li style="list-style-type: none;" data-itinerary-show-target="product">
+              <li style="list-style-type: none;" data-itinerary-show-target="product" data-type="product">
                 <div class="card-product m-3">
                   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                   <div class="card-product-infos">
@@ -59,7 +58,22 @@
                     <%= link_to "See this product!", product_show_path(product), class: "blue-btn p-2"%>
                   </div>
                 </div>
+              </li>
+            <% end %>
+            <% @stops.each do |stop|%>
+             <li style="list-style-type: none;" data-itinerary-show-target="stop" data-type="stop">
+                <div class="card-product m-3">
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <div class="card-product-infos">
+                    <h2><%=stop.name%></h2>
+                    <p><i class="fa-solid fa-location-dot"></i> <%= stop.address %></p>
+                    <input type="hidden" data-itinerary-show-target = "latitude" value="<%=stop.latitude%>">
+                    <input type="hidden" data-itinerary-show-target = "longitude" value="<%=stop.longitude%>">
+                  </div>
+                  <div>
 
+                  </div>
+                </div>
               </li>
             <% end %>
           </ul>

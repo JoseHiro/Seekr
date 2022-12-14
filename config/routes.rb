@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   delete "my_itineraries/product/:product_id/:itinerary_id/remove", to: "itineraries#remove_product_of_itinerary", as: "remove_product_of_itinerary"
   get "my_itineraries/:itinerary_id/get_itinerary", to: "itineraries#itinerary_route", as: "itinerary_route"
   get "my_itineraries/:id/add_stop/new", to: "stops#new", as: "itinerary_stops"
+  post "my_itineraries/:id/add_stop/new", to: "stops#create", as: "itinerary_stops_create"
 end
