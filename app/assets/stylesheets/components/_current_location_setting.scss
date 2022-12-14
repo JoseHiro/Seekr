@@ -4,15 +4,27 @@
 
 .current-location-input-form-submit {
   position: relative;
-  right: 20px;
+  right: 10px;
   z-index: 30;
   height: 37px;
   border-radius: 0 15px 15px 0;
 }
 
+.location-detail {
+  color:white;
+}
+
+.dashbrod-detail {
+  color:white;
+}
+
+.dashbored-name {
+  color:white;
+  font-weight:bold;
+}
 @media screen and (max-width: 480px){
   .current-location-btn {
-
+    margin-left:10px;
   }
 }
 

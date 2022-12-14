@@ -70,14 +70,15 @@
             <div class="m-1">
               <%= link_to "Add to my itinerary + ", create_itinerary_path(@product, itinerary: {name: "My itinerary #{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+            <div class="m-1">
+              <%= link_to "Go back to results", :back, class: "blue-btn" %>
+            </div>
           </div>
         <% else %>
           <div class="d-flex align-items-center">
             <div class="m-1">
               <%= link_to "Login to add this item to your itinerary", new_user_registration_path, class: "blue-btn"%>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
           </div>
         <% end %>
       </div>
@@ -86,13 +87,18 @@
 
   <div id=info-container-picture-business-product-show class="d-flex justify-content-center pt-3" style= "width: 100vw; background-color: white">
     <div class="" style=" width: 95vw; ">
-      <div class="m-2" style="bottom: 0; right: 0">
+      <div class="m-2 d-flex" style="bottom: 0; right: 0">
         <div class="mt-1">
           <h2 style="font-weight: bold"><%=@product.name%></h2>
           <hr>
+          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
           <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
+          <p><i class="fa-solid fa-clock"></i> <%= @product.business.opening_time.strftime("%H:%M")%> - <%= @product.business.closing_time.strftime("%H:%M")%><p>
+        </div>
+        <div class="m-1" style=" position:">
+          <%= link_to "See shop!", business_path(@product.business), class: "blue-btn" %>
         </div>
       </div>
       <div class="m-2">
@@ -102,17 +108,21 @@
       <div id="narrow-buttons">
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex align-items-center">
-            <div class="m-1">
+            <div class="m-1" style=>
               <%= link_to "Add to my itinerary + ", create_itinerary_path(@product, itinerary: {name: "My itinerary #{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+            <div class="m-1">
+              <%= link_to "Back to results", :back, class: "blue-btn" %>
+            </div>
           </div>
         <% else %>
           <div class="d-flex align-items-center">
             <div class="m-1">
               <%= link_to "Login to add this item to your itinerary", new_user_registration_path, class: "blue-btn"%>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+            <div class="m-1">
+              <%= link_to "Back to results", :back, class: "blue-btn" %>
+            </div>
           </div>
         <% end %>
         <hr>

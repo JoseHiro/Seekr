@@ -67,12 +67,14 @@
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex aligin-items-center">
             <div class="m-1">
+              <%= link_to "Go back to products!", business_products_path(@business), class: "blue-btn"%>
+            </div>
+            <div class="m-1">
               <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
             </div>
             <div class="m-1">
               <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
-            <h2><i class="fa-solid fa-tag" ></i> £<%= @product.price.round%></h2>
           </div>
 
         <% else %>
@@ -93,6 +95,7 @@
         <div class="mt-1">
           <h2 style="font-weight: bold" data-user-location-product-id-value="<%= @product.id %>"><%=@product.name%></h2>
           <hr>
+          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
           <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
@@ -104,21 +107,29 @@
       </div>
       <div id="narrow-buttons">
         <% if current_user && current_user == @product.business.owner %>
+
+
           <div class="d-flex align-items-center">
             <div class="m-1">
-              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn", style: "padding: 5px;"%>
+              <%= link_to "Go Back", :back, class: "blue-btn"%>
             </div>
             <div class="m-1">
-              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "padding: 5px;"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+            <div class="m-1">
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+            </div>
+
           </div>
         <% else %>
+
           <div class="d-flex align-items-center">
+          <div class="m-1">
+            <%= link_to "Go Back", :back, class: "blue-btn"%>
+          </div>
             <div class="m-1">
               <a class="blue-btn">Add to itinerary!</a>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
           </div>
         <% end %>
         <hr>

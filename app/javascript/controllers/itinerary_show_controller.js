@@ -68,8 +68,15 @@ export default class extends Controller {
       }
     })
     liElements.forEach((element) => {
-      const latitude = element.childNodes[1].childNodes[1].childNodes[7].defaultValue
-      const longitude = element.childNodes[1].childNodes[1].childNodes[9].defaultValue
+      let latitude = 0
+      let longitude = 0
+      if(element.dataset["type"] === "product"){
+      latitude = element.childNodes[1].childNodes[3].childNodes[7].defaultValue
+      longitude = element.childNodes[1].childNodes[3].childNodes[9].defaultValue
+      } else if(element.dataset["type"] === "stop"){
+        latitude= element.childNodes[1].childNodes[3].childNodes[5].defaultValue
+        longitude= element.childNodes[1].childNodes[3].childNodes[7].defaultValue
+      }
       if (latitude > -90 && latitude < 90 && element.classList.value !== "sortable-chosen sortable-fallback sortable-drag"){
         coordinates.push([longitude, latitude])
       }
