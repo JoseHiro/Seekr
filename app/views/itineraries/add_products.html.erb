@@ -1,9 +1,21 @@
 <div class="container m-5 p-3 d-flex flex-column" data-controller="itinerary-add-products">
-  <h1><%= pluralize(@counter, "Result") %></h1>
+  <div class="d-flex flex-row justify-content-between align-items-center">
+    <h1><%= pluralize(@counter, "Result") %></h1>
+    <%= link_to "Review #{@itinerary.name}", my_itineraries_path(@itinerary), class: "btn btn-primary" %>
+  </div>
   <br>
   <div class="d-flex flex-wrap flex-row m-1">
+  <% if @counter > 0 %>
   <% @products.each do |product| %>
     <%= render "itineraries/itinerary_add_product_card", itinerary: @itinerary, product: product %>
+  <% end %>
+    <% else %>
+  <div class="container d-flex justify-content-center">
+    <img class="no_content-image"src="https://res.cloudinary.com/djamfh5f6/image/upload/v1669755459/1491381-fococlipping-standard_tphv07.png" alt="Popeye thinking">
+    <div class="align-self-center m-5 d-flex flex-column">
+    <h3 class="mb-4" style="text-align:center">Sorry! No results found :( </h3>
+  </div>
+</div>
   <% end %>
   </div>
 </div>

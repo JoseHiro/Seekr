@@ -16,7 +16,7 @@ class ItinerariesController < ApplicationController
       saved_itinerary = SavedItinerary.new(itinerary: @itinerary, user: current_user, date: Date.today)
       if saved_itinerary.save
         product_itinerary = ProductItinerary.new(itinerary: @itinerary, product: @product)
-        redirect_to my_itineraries_path(@itinerary) if product_itinerary.save
+        redirect_to add_products_path(@itinerary) if product_itinerary.save
       else
         redirect_to root_path
       end
