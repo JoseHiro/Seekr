@@ -1,42 +1,113 @@
-<div style="height:400px; margin-top:40px; text-align:center">
-  <h2 class="">Popular categories</h2>
+<div class="landing-body" style="height:; background-color:#FFF2BF; text-align:center;">
+  <%# <h2 class="">Popular categories</h2> %>
 
-  <%# category list %>
-  <div class="d-flex mt-3 justify-content-around">
-    <div>
-      <img class="round category-img category-img1" src="https://images.indianexpress.com/2019/12/759-9.jpg" alt="">
-      <p>Technology</p>
-    </div>
+  <%# <%= cl_image_tag("dfukniqn3auawithsdih", width: 300, height: 180, class:"ms-4 mt-2") %>
+  <section class="colored-section" id="testimonials">
+    <div id="testimonial-carousel" class="carousel slide" data-bs-interval="false">
+      <div class="carousel-inner">
 
-    <div>
-      <img class="round category-img category-img2" src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-1200x628-facebook-1200x628.jpg" alt="">
-      <p>Health</p>
-    </div>
+          <%# page 1 %>
+          <div class="carousel-item active container-fluid carousel-item1">
+            <div class="d-flex ">
+              <div class="product-lineup">
+                <%# <img style="width:400px; height:300px"src="https://images.pexels.com/photos/2415935/pexels-photo-2415935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""> %>
+                <div class="mb-2">
+                  <img class="landing-product-img" src="https://image.made-in-china.com/2f0j00QkARoTIgbwcM/High-Quality-Gown-Private-Label-New-Design-Factory-Spring-Private-Label-Fashion-Women-Clothes-Beautiful-Dresses-Ladies-Dress.jpg" alt="">
+                  <img class="landing-product-img" src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/4AONWZS3WNHE5DXO7ZVLP6S4YI.jpg" alt="">
+                  <img class="landing-product-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSreefOpjz1DuB9fTqkaFpWM3gWK2ujIaCxsA&usqp=CAU" alt="">
+                </div>
 
-    <div class="display-none">
-      <img class="round category-img category-img3" src="https://static.independent.co.uk/2022/01/28/16/Best%20online%20clothes%20shops%20and%20brands%20Indybest%20copy.jpg?quality=75&width=982&height=726&auto=webp" alt="">
-      <p>Cloth</p>
-    </div>
+                <div class="mb-2">
+                  <img class="landing-product-img" src="https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/611ac5594d48fb60ede06fe6_00049200007402-glamor-frontpackageglamor-2021-01-12t20-08-14-iphone-x-quality-90-1-21-8-user-5984ad42a967f880524de2c4-otvq-155576.jpg" alt="">
+                  <img class="landing-product-img" src="https://www.changinghands.com/sites/changinghands.com/files/teenbundle.jpg" alt="">
+                  <img class="landing-product-img" src="https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg" alt="">
+                </div>
 
-    <div>
-      <img class="round category-img category-img4" src="https://static.independent.co.uk/2022/01/28/16/Best%20online%20clothes%20shops%20and%20brands%20Indybest%20copy.jpg?quality=75&width=982&height=726&auto=webp" alt="">
-      <p>Cloth</p>
-    </div>
-  </div>
+                <div class="mb-2">
+                  <img class="landing-product-img" src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1665603924-dagne-dover-dakota-neoprene-backpack-in-camel-1665603915.jpg" alt="">
+                  <img class="landing-product-img" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-model-unselect-gallery-1-202207?wid=2560&hei=1440&fmt=jpeg&qlt=95&.v=1654893619853" alt="">
+                  <img class="landing-product-img" src="https://www.eatthis.com/wp-content/uploads/sites/4/2022/02/Beer-flight.jpg?quality=82&strip=all" alt="">
+                </div>
+              </div>
 
-  <div class="d-flex justify-content-around">
-    <div>
-      <img class="round category-img category-img5" src="https://www.educationalproducts.com/shoppacks/images/Layout/login/supplies.png" alt="">
-      <p>Education</p>
+              <div>
+                <h4 style="" class="mt-2 mb-2 testimonial-text1">You no longer have to wonder around the streets. Seek it, and it's right there</h4>
+                <div>
+                  <%= link_to "Signup", new_user_registration_path, class:"btn btn-light" %>
+                  <%= link_to "Login", new_user_session_path, class: "me-2 btn btn-light" %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <%# page 2 %>
+          <div class="carousel-item carousel-item2 container-fluid">
+            <div class="carousel-item2-items">
+              <%= cl_image_tag("dfukniqn3auawithsdih", width: 400, height: 250, class:"mac-image") %>
+              <h4 style="color:white" class="carousel-item2-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, reiciendis delectus cum nostrum fug</h4>
+            </div>
+          </div>
+
+          <div style="background-color:white;" class="carousel-item carousel-item3 container-fluid">
+            <div class="container">
+              <div class="card" style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px;">
+                <div class="face face1">
+                  <div class="content">
+                      <%# <i class="fab fa-windows"></i> %>
+                    <h3>Benefits</h3>
+                  </div>
+                </div>
+                <div class="face face2">
+                  <div class="content">
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
+                    <%# <a href="#" type="button">Read More</a> %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px;">
+                <div class="face face1">
+                  <div class="content">
+                    <%# <i class="fab fa-android"></i> %>
+                    <h3>Find your best route</h3>
+                  </div>
+                </div>
+                <div class="face face2">
+                  <div class="content">
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
+                    <%# <a href="#" type="button">Read More</a> %>
+                  </div>
+                </div>
+            </div>
+
+            <div class="card" style="border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px;">
+              <div class="face face1">
+                <div class="content">
+                  <%# <i class="fab fa-apple"></i> %>
+                    <h3>Business mode</h3>
+                </div>
+              </div>
+
+              <div class="face face2">
+                <div class="content">
+                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
+                  <%# <a href="#" type="button">Read More</a> %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <button class="carousel-control-prev" type="button" href="#testimonial-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+     </div>
     </div>
-    <div class="display-none">
-      <img class="round category-img category-img6" src="https://media.istockphoto.com/id/1274950193/photo/group-of-different-exercising-equipment-on-white-home-gym-floor-fitness-ball-round-foam.jpg?s=612x612&w=0&k=20&c=Jj_MEvqbR7jEFWLkcz-ElP27P-5ZL6uqhP0UxVLc4IA=" alt="">
-      <P>Exercise</P>
-    </div>
-    <div>
-      <img class="round category-img category-img7" src="https://www.eatthis.com/wp-content/uploads/sites/4/2020/02/aldi-items.jpg?quality=82&strip=1" alt="">
-      <p>Food</p>
-    </div>
-  </div>
+  </section>
 
 </div>
