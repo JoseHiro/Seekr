@@ -1,15 +1,16 @@
-<div class="container marketing">
+<div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-10 mt-5 mb-5">
+    <div class="user-image-button-container col-10 mt-5 mb-5">
+      <div class="user-show-container ">
 
-      <div class="d-flex">
-        <div class="me-4">
+        <div class="user-show-image-container">
           <% if @user.avatar.attached? %>
-            <%= cl_image_tag @user.avatar.key, height: 200, width: 200, crop: :fill, class:"round" %>
+            <%= cl_image_tag @user.avatar.key, crop: :fill, class:"show-image round" %>
           <% else %>
-            <img class="round" style="height: 300px; width: 300px;"src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
+            <img class="round show-image" style=""src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
           <% end %>
         </div>
+
         <div >
           <div class="d-flex">
            <h4><%= @user.first_name %></h4>
@@ -19,13 +20,10 @@
           <h5>User since <%= current_user.created_at.strftime("%a %b %e") %></h5>
           <%= link_to "Edit my account", edit_user_registration_path, class:"btn btn-light mt-2 mb-2"   %>
           <%= link_to "My itineraries",  my_itinerary_path, class:"btn btn-light mt-2 mb-2" %>
-          <%= link_to "Business mode", owner_path, class:"btn btn-light mt-2 mb-2" %>
+          <%= link_to "Business mode", new_business_path, class:"btn btn-light mt-2 mb-2" %>
         </div>
 
-
       </div>
-
-
     </div>
   </div>
 </div>

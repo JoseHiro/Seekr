@@ -12,7 +12,9 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    @business.owner = current_user
+    @owner = current_user
+    @business.owner = @owner
+
     if @business.save
       redirect_to businesses_path
     else
@@ -46,11 +48,16 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @photos = @business.photos
+    @markers = [{
+      lat: @business.latitude,
+      lng: @business.longitude
+  }]
   end
 
   private
 
   def business_params
-    params.require(:business).permit(:name, :address, :opening_time, :closing_time, :status, :category, :description)
+    params.require(:business).permit(:name, :address, :opening_time, :closing_time, :status, :category, :description, photos: [])
   end
 end

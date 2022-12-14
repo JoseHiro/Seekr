@@ -1,5 +1,5 @@
 <%@user_location = request.location%>
-<div data-controller="user-location" id="show-container" style="width: 100vw; background-color:white;">
+<div id="show-container" style="width: 100vw; background-color:white;">
   <div class="d-flex justify-content-around">
 
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="height: 35vh; width: 100vw; ">
@@ -63,23 +63,24 @@
         <span class="visually-hidden">Next</span>
       </button>
 
-      <div id="wide-buttons">
+      <div id="wide-buttons" style="margin-top: 10px; margin-left: -4.5px; margin-bottom: 50px;">
         <% if current_user && current_user == @product.business.owner %>
-          <div class="d-flex">
+          <div class="d-flex aligin-items-center">
             <div class="m-1">
               <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
             </div>
             <div class="m-1">
               <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
+            <h2><i class="fa-solid fa-tag" ></i> £<%= @product.price.round%></h2>
           </div>
-          <h2><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+
         <% else %>
           <div class="d-flex align-items-center">
             <div class="m-1">
               <a class="btn btn-primary">Add to itinerary!</a>
             </div>
-            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+            <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> £<%= @product.price.round%></h2>
           </div>
         <% end %>
       </div>

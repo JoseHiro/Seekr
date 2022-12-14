@@ -1,7 +1,6 @@
 class ItinerariesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:add_product_to_itinerary, :remove_product_of_itinerary]
-
   def new
     seek = params[:filters].nil? ? "" : params[:filters][:seek]
     address = params[:filters].nil? ? "" : params[:filters][:address]

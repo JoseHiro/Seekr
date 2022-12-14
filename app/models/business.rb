@@ -4,7 +4,7 @@ class Business < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   after_validation :geocode_products, if: :will_save_change_to_address?
   has_many :products
-  has_one_attached :photo
+  has_many_attached :photos
 
   def geocode_products
     products.each do |p|
