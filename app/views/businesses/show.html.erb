@@ -127,13 +127,13 @@
                 <%= link_to "See products!", business_products_path(@business), class: "blue-btn"%>
               </div>
               <div class="m-2">
-                <%= link_to "Delete", business_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "background-color: red"%>
-              </div>
-              <div class="m-2">
                 <%= link_to "Back", :back, class: "blue-btn" %>
               </div>
+              <div class="m-2">
+                <%= link_to "Delete", business_path(@business), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "background-color: red"%>
+              </div>
             </div>
-          </div>
+
         <% else %>
           <div class="d-flex align-items-center">
             <div class="m-1">
