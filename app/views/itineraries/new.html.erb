@@ -17,7 +17,7 @@
                 <div class="d-flex ">
                   <div class=" align-items-center">
                     <div class="" style="margin-bottom: -10px">
-                      <h4><span><i class="fa-solid fa-tag"></i></span> £<%= product.price %>, </h4>
+                      <h4><span><i class="fa-solid fa-tag"></i></span> £<%= "%.2f" % product.price.round %></h4>
                       <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
                     </div>
                     <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>

@@ -14,10 +14,6 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
     });
-    // this.#addMarkersToMap()
-    // this.#fitMapToMarkers()
-    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-    //   mapboxgl: mapboxgl }))
     this.#validateData();
     const stops = this.geojsonTarget.dataset["setpoints"]
     this.#fitMapToMarkers(this.#toArray(stops))
@@ -39,7 +35,6 @@ export default class extends Controller {
       }
         new mapboxgl.Marker(newMarker)
         .setLngLat([ marker[0], marker[1] ])
-        // .setPopup(popup)
         .addTo(this.map)
 
     });
@@ -48,7 +43,6 @@ export default class extends Controller {
   #fitMapToMarkers(stops) {
     const bounds = new mapboxgl.LngLatBounds();
       stops.forEach((marker) =>{
-      console.log(marker)
       bounds.extend([marker[0], marker[1]])
   });
     this.map.fitBounds(bounds, { padding: 70, duration: 5000 });

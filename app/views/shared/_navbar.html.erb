@@ -42,16 +42,7 @@
         <i class="fa fa-bars" style="color: white; font-size: 40px;" aria-hidden="true"></i>
       </label>
       <input id="open" type="checkbox">
-      <div id="menu">
-        <nav>
-          <ul>
-            <%= link_to "My account", user_path(current_user), class: "dropdown-item" %>
-            <%=link_to "My businesses", businesses_path, class:"dropdown-item"%>
-            <%= link_to "Edit account", edit_user_registration_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-          </ul>
-        </nav>
-      </div>
+      <%= render "shared/slidebar_mobile" %>
     </div>
 
 

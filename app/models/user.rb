@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :businesses
   has_many :saved_itineraries
+  has_many :itineraries, through: :saved_itineraries
   has_one :location
 end

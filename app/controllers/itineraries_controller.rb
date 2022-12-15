@@ -84,6 +84,16 @@ class ItinerariesController < ApplicationController
     end
   end
 
+  def mark_itinerary_as_completed
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.update(new_itinerary_params)
+    redirect_to history_itineraries_path
+  end
+
+  def history_itineraries
+    @itineraries = current_user.itineraries
+  end
+
   def remove_product_of_itinerary
     @product = Product.find(params[:product_id])
     @itinerary = Itinerary.find(params[:itinerary_id])

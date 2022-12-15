@@ -7,7 +7,7 @@ export default class extends Controller {
     this.sortable()
     this.getRoute("cycling")
   }
-  static targets = ["newNameForm", "nameContainer", "name", "itineraryId", "date", "dateForm", "datePencil", "savedItineraryId", "listProducts", "product", "geojson", "userCurrentLocation"]
+  static targets = ["newNameForm", "nameContainer", "name", "itineraryId", "date", "dateForm", "datePencil", "savedItineraryId", "listProducts", "product", "geojson", "userCurrentLocation", "distance", "time"]
 
   updateDate(event){
     event.preventDefault()
@@ -88,7 +88,6 @@ export default class extends Controller {
   }
 x
   getRoute(via){
-    console.log(via)
     const coordinates = this.getItineraryCoordinates()
     this.geojsonTarget.dataset["setpoints"] = coordinates
     let query = ""
@@ -103,6 +102,9 @@ x
     fetch(url)
     .then(response => response.json())
     .then((json) => {
+      console.log(json)
+      this.distanceTarget.innerHTML = `${Math.round((json.routes[0]["distance"]) / 1000)}`
+      this.timeTarget.innerHTML= ((json.routes[0]["duration"]) / 3600).toFixed(2)
       const data = json.routes[0]
       const route = data.geometry.coordinates
       const geojson = {
