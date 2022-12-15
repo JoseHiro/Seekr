@@ -30,13 +30,26 @@
             <div>
             <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary" %>
            </div>
+            <div>
+            <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary" %>
+           </div>
+           <% if @itinerary.current%>
+           <div>
+            <%= link_to "Undo current", remove_as_current_path(@itinerary, itinerary: {current: false}), class: "btn btn-danger", style: "color:white", data: {turbo_method: :patch} %>
+            </div>
+           <% elsif SavedItinerary.has_current?(current_user.itineraries)%>
+           <div>
+              <%= link_to "Set as current", undo_and_set_as_current_path(@itinerary, itinerary: {current: true}), class: "btn btn-success", data: {turbo_method: :patch} %>
+           </div>
+           <% else %>
+             <div>
+              <%= link_to "Set as current", set_as_current_path(@itinerary, itinerary: {current: true}), class: "btn btn-success", data: {turbo_method: :patch} %>
+           </div>
+           <% end %>
            <div>
            <%= link_to mark_as_complete_path(@itinerary, itinerary: {status: true}), class: "btn btn-success", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
             <p style="margin-bottom: 0 !important;">Mark as completed <i class="fa-solid fa-circle-check"></i></p>
            <% end %>
-           </div>
-           <div>
-           <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary" %>
            </div>
          </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -56,15 +69,16 @@
 
         </p>
         <div class="d-flex flex-column p-3">
+          <h4>Your itinerary stops; feel free to change the order.</h4>
           <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRouteForCycling">
             <% @itinerary.products.each do |product| %>
               <li style="list-style-type: none;" data-itinerary-show-target="product" data-type="product">
                 <div class="card-product m-3">
                   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                   <div class="card-product-infos">
-                    <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
-                    <p><i class="fa-solid fa-location-dot"></i> <%= product.business.address %></p>
-                    <p><i class="fa-solid fa-store"></i> <%= link_to product.business.name, business_path(product.business) %></p>
+                    <h2 style="color:black"><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
+                    <p style="color:black"><i class="fa-solid fa-location-dot"></i> <%= product.business.address %></p>
+                    <p style="color:black"><i class="fa-solid fa-store"></i> <%= link_to product.business.name, business_path(product.business) %></p>
                     <input type="hidden" data-itinerary-show-target = "latitude" value="<%=product.business.latitude%>">
                     <input type="hidden" data-itinerary-show-target = "longitude" value="<%=product.business.longitude%>">
                   </div>
@@ -79,7 +93,7 @@
                 <div class="card-product m-3">
                   <img src="https://images.dailyhive.com/20170815113327/Free-Wi-Fi-indicated-on-rest-area-sign-Province-of-BC.jpg" />
                   <div class="card-product-infos">
-                    <h2><%=stop.name%></h2>
+                    <h2 style="color:black"><%=stop.name%></h2>
                     <p><i class="fa-solid fa-location-dot"></i> <%= stop.address %></p>
                     <input type="hidden" data-itinerary-show-target = "latitude" value="<%=stop.latitude%>">
                     <input type="hidden" data-itinerary-show-target = "longitude" value="<%=stop.longitude%>">

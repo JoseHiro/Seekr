@@ -8,7 +8,7 @@
       <img class="mt-4 round" style="height: 100px; width: 100px;" src="https://pcafalcons.com/wp-content/uploads/2019/08/no-profile-picture-icon-female-0-e1564976045606.jpg" alt="">
     <% end %>
     <br>
-    
+
 
     <div class="mt-4 ms-4" style="text-align: left">
       <%# <%= link_to "My itineraries",  my_itinerary_path, class:"mt-1 slide-bar-links dropdown-item" %>
@@ -69,32 +69,47 @@
 
       <%= render "shared/current_address_setting" %>
       <hr>
-
       <div class="dashbrod-detail d-flex justify-content-around">
-        <div>
-          <h3>3<i style="color:#FFF2BF" class="ms-1 fa-solid fa-cart-shopping"></i></h3>
-          <p>3 items </p>
+      <% if @itinerary.nil?  %>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+        <p>You don't have any current itinerary</p>
+        <%= link_to "Choose current itinerary", "my_itineraries", class: "btn btn-light ms-4 mb-3" %>
         </div>
-        <div>
-          <h3>2<i style="color:#FFF2BF" class="ms-1 fa-solid fa-location-dot"></i></h3>
-          <p>2 stops</p>
+      <% else %>
+      <div class="d-flex flex-column w-75">
+        <h3 style="color:white; text-align: center;" class="mt-3">Tracking: <%= @itinerary.name %></h3>
+        <br>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <div class="d-flex flex-column justify-content-center">
+            <h3><i style="color:#FFF2BF" class="ms-1 fa-solid fa-cart-shopping"></i></h3>
+            <p style="text-align:center"><%= pluralize(@itinerary.products.count, "item") %> </p>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h3><i style="color:#FFF2BF" class="ms-1 fa-solid fa-location-dot"></i></h3>
+            <p style="text-align:center"><%= pluralize(@stops, "place") %></p>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h3><i style="color:#FFF2BF" class="fa-solid fa-calendar-days"></i></h3>
+            <p style="text-align:center"><%= @date %> </p>
+          </div>
         </div>
-        <div>
-          <h3>16<i style="color:#FFF2BF" class="ms-1 fa-solid fa-clock"></i></h3>
-          <p>16minutes</p>
+        <%= link_to "See details", my_itineraries_path(@itinerary), class: "btn btn-light mb-4" %>
         </div>
+      <% end %>
+
       </div>
     </div>
 
     <%# dashbored2 %>
+    <!--
     <div class="mt-2 corner shiny" style=" background-color:#333; box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 0 auto; width:80%; height:60px;">
       <div class="d-flex justify-content-around">
         <h3 style="color:white" class="mt-3">My itinerary</h3>
         <%= link_to "View",  my_itinerary_path, class:"btn btn-light mt-2 mb-2" %>
       </div>
     </div>
+-->
    </div>
-
 
     <%# category list %>
    <div style="text-align:center; background-size:cover; background-image:url('https://img.freepik.com/free-photo/full-length-portrait-excited-man_171337-2333.jpg?w=1480&t=st=1670527180~exp=1670527780~hmac=3e611183adee5f13ea9058d251f88ddaeff590430b12b5b1c17362ba4a8690dc')">
