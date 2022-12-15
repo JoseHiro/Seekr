@@ -16,9 +16,14 @@
   .icon-nav {
     display: none;
   }
+
+  .navbar-search-glass {
+    background-color: red;
+  }
 }
 @media screen and (min-width: 481px) and (max-width: 959px) {
-  .humberger-nav {
+
+  .icon-nav {
     display: none;
   }
 }
@@ -31,7 +36,9 @@
 
 
   @media screen and (max-width: 480px){
-
+    .navbar-lewagon{
+      border-bottom: none;
+    }
   }
   @media screen and (min-width: 481px) and (max-width: 959px) {
     .navbar-lewagon {

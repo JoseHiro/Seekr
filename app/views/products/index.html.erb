@@ -14,12 +14,15 @@
 </div>
 <div class="d-flex justify-content-center" style="width: 100vw; margin-top: 10px">
   <div class="m-2">
-    <%= link_to "Go back to business!", business_path(Business.find(@business)), class: "blue-btn"%>
+    <%= link_to "Go back to business!", business_path(Business.find(@business)), class: "blue-btn" %>
   </div>
+  <% if current_user == Business.find(@business).owner %>
   <div class="m-2">
-    <%= link_to "Add more items!", new_business_product_path, class: "blue-btn"%>
+    <%= link_to "Add more items!", new_business_product_path, class: "blue-btn" %>
   </div>
+  <% end %>
 </div>
+
 
 <div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
     <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw;">
@@ -38,9 +41,15 @@
                 <% end %>
               </div>
             </div>
-            <div style="margin-top: 10px">
-              <%= link_to "See/edit this product!", business_product_path(@business, product), class: "blue-btn"%>
-            </div>
+            <% if current_user == Business.find(@business).owner %>
+              <div style="margin-top: 10px">
+                <%= link_to "See/edit this product!", business_product_path(@business, product), class: "blue-btn"%>
+              </div>
+            <% else%>
+              <div style="margin-top: 10px">
+                <%= link_to "See up close!", business_product_path(@business, product), class: "blue-btn"%>
+              </div>
+            <% end %>
             </div>
         </div>
       <% end %>

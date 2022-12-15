@@ -85,6 +85,17 @@
 }
 
 @media screen and (max-width: 480px){
+  .signed-in-search-glass-container {
+
+  }
+
+  .signed-in-search-glass {
+    position: relative;
+    bottom: 50px;
+    margin-left: 345px;
+    z-index: 50;
+    // margin-left: 400px;
+  }
   .user-signed-in-sidebar {
     display:none;
   }
@@ -125,11 +136,14 @@
 
   .sign-in-right-container {
     width:900px;
-    margin-left: 50px;
+    margin-left: 100px;
   }
 
   .sign-in-search-engine {
     display: none;
+  }
+
+  .user-signed-in-sidebar {
   }
 
 
