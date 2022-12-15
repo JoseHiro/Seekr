@@ -1,6 +1,6 @@
 
-<div class="mt-2 mb-2" style="text-align:center; background-color: #333; height: 40px; width:100%;">
-  <h3 style="font-weight:bold; color:white">Shops near you</h3>
+<div class="mt-2 mb-2" style="text-align:center; background-color: #333; width:100%;">
+  <h3 style="padding-bottom:8px; padding-top:8px; font-weight:bold; color:white">Shops near you</h3>
 </div>
 
 
@@ -12,7 +12,11 @@
   <% @shops.each do |shop| %>
     <%= link_to business_path(shop), style:"text-decoration:none; color:black" do  %>
     <div class="shops-near mt-2 d-flex" style=" border-bottom: solid 2px black">
-     <%= cl_image_tag shop.photos[0].key, height: 120, width: 120, crop: :fill %>
+      <% if shop.photos.attached?  %>
+        <%= cl_image_tag shop.photos[0].key, height: 120, width: 120, class:"", crop: :fill %>
+      <% else %>
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/zr_icon/company-23.png" style="height: 120px; width: 120px;"alt="">
+      <% end %>
      <div class="home-business-detail" >
       <h3><%= shop.name %></h3>
       <p><%= shop.address %></p>

@@ -2,6 +2,7 @@
   <div class="owner-page-message">
     <h1 style=" font-weight:bold">This is your opportunity</h1>
     <h2 style=" font-weight:bold">Run your business</h2>
+    <h3 class="new-owner-page-h3">Seekers are waiting for you..</h3>
   </div>
   <div class="new-business-form" style="box-shadow: 0 20px 50px rgba(0,0,0,.8);">
       <div class="row d-flex justify-content-center">
@@ -16,7 +17,7 @@
             <%= f.input :closing_time, as: :time, html5: true %>
             <%= f.input :description %>
             <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-            <%= f.submit "Make my business seekable", class: "btn btn-primary"%>
+            <%= f.submit "Make my business seekable", style:"background-color: #2997D8; color:white", class: "btn"%>
             <% end %>
         </div>
       </div>

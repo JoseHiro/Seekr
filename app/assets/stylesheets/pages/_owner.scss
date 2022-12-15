@@ -10,9 +10,16 @@
     color:white;
   }
 
+  .new-owner-page-h3 {
+    display:none;
+  }
+
 
 }
 @media screen and (min-width: 481px) and (max-width: 959px) {
+  .new-owner-page-h3 {
+    display:none;
+  }
 }
 
 @media screen and (min-width: 960px) {
@@ -34,8 +41,13 @@
     color:#333;
   }
 
+
+
+
   .new-business-form {
     background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
     width:600px;
     height: 700px;
     border-radius: 15px;
