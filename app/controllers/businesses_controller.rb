@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
     "Automotive", "Business Support & Supplies", "Computers & Electronics", "Construction & Contractors",
     "Education", "Entertainment", "Food & Dining", "Health & Medicine", "Home & Garden", "Legal & Financial",
     "Manufacturing, Wholesale,Distribution", "Merchants (Retail)", "Miscellaneous", "Personal Care & Services",
-    "Real Estate", "Travel & Transportation"
+    "Real Estate", "Travel & Transportation","Sports"
   ]
   def new
     @business = Business.new
