@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   post "my_itineraries/:id/add_stop/new", to: "stops#create", as: "itinerary_stops_create"
   patch "my_itineraries/:id/completed", to: "itineraries#mark_itinerary_as_completed", as: "mark_as_complete"
   get "history", to:"itineraries#history_itineraries", as: "history_itineraries"
+  patch ":id/undo_and_set_current", to: "itineraries#undo_and_set_as_current", as: "undo_and_set_as_current"
+  patch ":id/set_as_current", to: "itineraries#set_as_current", as: "set_as_current"
+  patch ":id/remove_as_current", to: "itineraries#remove_as_current", as: "remove_as_current"
 end

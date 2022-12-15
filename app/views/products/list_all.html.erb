@@ -1,8 +1,38 @@
-<h1>Products available</h1>
-<div class="container d-flex justify-content-center">
-  <div>
-    <% @products.each do|product|%>
-      <%= render "shared/product_card" %>
+<% if @counter > 0 %>
+      <% @products.each do |product| %>
+        <div class="card" style="width: 20rem; height: 36rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+              <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+              <div class="card-body">
+                <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
+                <div class="d-flex ">
+                  <div class=" align-items-center">
+                    <div class="" style="margin-bottom: -10px">
+                      <h4><span><i class="fa-solid fa-tag"></i></span> £<%= "%.2f" % product.price.round %></h4>
+                      <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
+                    </div>
+                    <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>
+                    <% if product.availability  %>
+                      <span class="badge bg-success badge-pill badge-success">In stock</span>
+                    <% else %>
+                      <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
+                    <% end %>
+                  </div>
+                </div>
+                  <div style="margin-top: -3px;">
+                    <%= link_to "See up close!", product_show_path(product), class: "blue-btn" %>
+                  </div>
+                  <div style="margin-top: 20px">
+                    <%= link_to "Add to my itinerary + ", create_itinerary_path(product, itinerary: {name: "My itinerary ##{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
+                  </div>
+              </div>
+            </div>
+      <% end %>
+        </div>
+  <% else %>
+    <div class="container d-flex justify-content-center" style="height: 65vh">
+      <div class="align-self-center d-flex flex-row align-items-center">
+      <img class="no_content-image m-2" src="https://res.cloudinary.com/djamfh5f6/image/upload/v1669755459/1491381-fococlipping-standard_tphv07.png" alt="Popeye thinking">
+      <h3 class="mb-4" style="text-align:center">Sorry! No results found :( </h3>
+    </div>
+    </div>
     <% end %>
-  </div>
-</div>

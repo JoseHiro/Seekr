@@ -104,6 +104,27 @@ class ItinerariesController < ApplicationController
     end
   end
 
+  def set_as_current
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.update(new_itinerary_params)
+    redirect_to root_path
+  end
+
+  def remove_as_current
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.update(new_itinerary_params)
+    redirect_to my_itineraries_path(@itinerary)
+  end
+
+  def undo_and_set_as_current
+    @itinerary = Itinerary.find(params[:id])
+    current_user.itineraries.each do |itinerary|
+      itinerary.update(current: false) if itinerary.current
+    end
+    @itinerary.update(new_itinerary_params)
+    redirect_to root_path
+  end
+
   private
 
   # The seach engine method is using pgsearch gem. To edit the query setting go to the Product Model.
@@ -128,7 +149,7 @@ class ItinerariesController < ApplicationController
   end
 
   def new_itinerary_params
-    params.require(:itinerary).permit(:name, :status)
+    params.require(:itinerary).permit(:name, :status, :current)
   end
 
   def saved_itinerary_params
