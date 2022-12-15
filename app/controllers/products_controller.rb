@@ -58,11 +58,11 @@ class ProductsController < ApplicationController
   def update
     @business = Business.find(params[:business_id])
     @product = Product.find(params[:id])
-    # if @product.update(product_params)
-    #   redirect_to business_product_path(@business, @product)
-    # else
-    #   render :edit, :unprocessable_entity
-    # end
+    if @product.update(product_params)
+      redirect_to business_product_path(@business, @product)
+    else
+      render :edit, :unprocessable_entity
+    end
   end
 
   def destroy
