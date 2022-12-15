@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   get "my_itineraries/:itinerary_id/get_itinerary", to: "itineraries#itinerary_route", as: "itinerary_route"
   get "my_itineraries/:id/add_stop/new", to: "stops#new", as: "itinerary_stops"
   post "my_itineraries/:id/add_stop/new", to: "stops#create", as: "itinerary_stops_create"
+  patch "my_itineraries/:id/completed", to: "itineraries#mark_itinerary_as_completed", as: "mark_as_complete"
+  get "history", to:"itineraries#history_itineraries", as: "history_itineraries"
 end

@@ -1,0 +1,15 @@
+<div class="container m-2 p-3 card border">
+  <h1>Your itineraries previous itineraries</h1>
+  <% @itineraries.each do |itinerary| %>
+  <% if itinerary.status %>
+  <div data-controller = "itineraries-index">
+   <div class="card m-3" data-itineraries-index-target="info">
+      <h5 class="card-header" data-itineraries-index-target="name"><strong><%= itinerary.name %></strong> </h5>
+      <div class="card-body">
+        <p class="card-text">Your itinerary included <%= pluralize(itinerary.products.count, "product") %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>

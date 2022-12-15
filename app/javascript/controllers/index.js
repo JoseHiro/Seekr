@@ -21,3 +21,6 @@ application.register("itinerary-show", ItineraryShowController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import MapShowController from "./map_show_controller"
+application.register("map-show", MapShowController)
