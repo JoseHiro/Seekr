@@ -5,7 +5,7 @@
     <h2 style=" font-weight: bold; color:white; margin-top:130px ">Find anything on the highstreet</h2>
 
       <div class="" style=" width: 400px;">
-        <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+        <%= simple_form_for :filters, url: products_path, method: :get do |f| %>
           <%= f.input :seek, label:false, placeholder:"Seek any product"%>
           <%= f.input :address, label:false,  input_html: { class: "d-none iben", data: {address_autocomplete_target: "Where"}},wrapper_html: {class: "iben" ,data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
           <%= button_tag type: 'submit', class:"btn" do %>
