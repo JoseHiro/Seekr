@@ -30,7 +30,7 @@
             <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
             <div class="d-flex ">
               <div class=" align-items-center">
-                <h5><span><i class="fa-solid fa-tag"></i></span> £<%= product.price.round %></h5>
+                <h5><span><i class="fa-solid fa-tag"></i></span> £<%= "%.2f" % product.price.round %></h5>
                 <% if product.availability  %>
                   <span class="badge bg-success badge-pill badge-success">In stock</span>
                 <% else %>

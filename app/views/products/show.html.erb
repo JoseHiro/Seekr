@@ -95,7 +95,7 @@
         <div class="mt-1">
           <h2 style="font-weight: bold" data-user-location-product-id-value="<%= @product.id %>"><%=@product.name%></h2>
           <hr>
-          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= @product.price.round%></h2>
+          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= "%.2f" % @product.price.round%></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
           <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
