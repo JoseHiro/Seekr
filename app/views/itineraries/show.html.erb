@@ -22,24 +22,38 @@
             <%= f.submit "Save", class: "btn btn-dark h-50" %>
           <% end %>
         <p>
-         <div class="d-flex flex-row justify-content-between p-3">
-           <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary" %>
+        <div class="d-flex flex-column">
+          <p><i class="fa-solid fa-clock"></i> Total travel time: <span data-itinerary-show-target="time"></span> hours</h3>
+          <p><i class="fa-solid fa-road"></i> Total distance: <span data-itinerary-show-target="distance"></span> kilometers </h3>
+        </div>
+         <div class="d-flex flex-wrap flex-row justify-content-between align-items-center p-3">
+            <div>
+            <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary" %>
+           </div>
+           <div>
+           <%= link_to mark_as_complete_path(@itinerary, itinerary: {status: true}), class: "btn btn-success", data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} do %>
+            <p style="margin-bottom: 0 !important;">Mark as completed <i class="fa-solid fa-circle-check"></i></p>
+           <% end %>
+           </div>
+           <div>
            <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary" %>
+           </div>
          </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="radio" name="options" autocomplete="off" data-action= "click->itinerary-show#getRouteForWalking">
-                Walking <i class="fa-solid fa-person-walking"></i>
-            </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" autocomplete="off" checked data-action= "click->itinerary-show#getRouteForCycling">
+            <label class="btn btn-secondary active" data-action= "click->itinerary-show#getRouteForCycling">
+              <input type="radio" name="options" autocomplete="off" checked>
                 Cycling <i class="fa-solid fa-bicycle"></i>
             </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" autocomplete="off" data-action= "click->itinerary-show#getRouteForCar">
+            <label class="btn btn-secondary" data-action= "click->itinerary-show#getRouteForWalking">
+              <input type="radio" name="options" autocomplete="off" >
+                Walking <i class="fa-solid fa-person-walking"></i>
+            </label>
+            <label class="btn btn-secondary" data-action= "click->itinerary-show#getRouteForCar">
+              <input type="radio" name="options" autocomplete="off">
                 Car <i class="fa-solid fa-car"></i>
             </label>
           </div>
+
         </p>
         <div class="d-flex flex-column p-3">
           <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRouteForCycling">
@@ -63,7 +77,7 @@
             <% @stops.each do |stop|%>
              <li style="list-style-type: none;" data-itinerary-show-target="stop" data-type="stop">
                 <div class="card-product m-3">
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <img src="https://images.dailyhive.com/20170815113327/Free-Wi-Fi-indicated-on-rest-area-sign-Province-of-BC.jpg" />
                   <div class="card-product-infos">
                     <h2><%=stop.name%></h2>
                     <p><i class="fa-solid fa-location-dot"></i> <%= stop.address %></p>
