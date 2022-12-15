@@ -1,6 +1,6 @@
 @media screen and (max-width: 480px){
   .iphone-image {
-    width: 150px;
+    width: 135px;
     height: 300px;
     padding-bottom: 40px;
     transform: rotate(15deg);
@@ -48,4 +48,8 @@
     z-index:40;
   }
 
+}
+
+.iphone-image {
+  z-index:50;
 }

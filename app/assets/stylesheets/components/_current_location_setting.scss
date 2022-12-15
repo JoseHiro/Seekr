@@ -21,6 +21,13 @@
 .dashbored-name {
   color:white;
   font-weight:bold;
+
+}
+
+.home-current-location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 480px){
@@ -33,6 +40,15 @@
     display: flex;
     justify-content: space-around;
   }
+
+  .home-current-location {
+    margin-top: 10px;
+    width:50px;
+  }
+
+  // .dashbored-name-address {
+  //   width:400px;
+  // }
 }
 
 
@@ -50,6 +66,12 @@
     margin-top: 30px;
     margin-left: 20px;
   }
+
+  .home-current-location {
+    margin-top: 10px;
+    width:100px;
+  }
+
 }
 
 @media screen and (min-width: 960px) {
@@ -69,6 +91,15 @@
 
   .seek-search {
     border-radius: 0;
+  }
+
+  .home-current-location-pin{
+    margin-top: 14px;
+  }
+
+  .home-current-location {
+    margin-top: 10px;
+    width:300px;
   }
 
 }
