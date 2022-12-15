@@ -1,28 +1,60 @@
+// avatar
+
+.slide-avatar-container {
+  width:100%;
+  border-bottom: solid 2px white;
+  display: flex;
+  justify-content: center;
+}
+
+.side-bar-avatar {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+// links
+
 ul {
+  height:100vh;
   margin: 0;
+  padding-top:15px;
   padding-left: 0;
+  color: white;
 }
 
 li {
   list-style: none;
 }
 
-a {
-  text-decoration: none;
-  color: #fff;
+.slide-bar-links {
+  margin-top: 10px;
+  font-size: 20px;
 }
+
+.slide-bar-links:hover {
+  color: #FFF2BF !important;
+}
+
+.slide-bar-logout {
+  bottom:0;
+}
+
+
+// a {
+
+// }
 
 #menu {
   z-index: 40;
   position: fixed;
   top: 0;
-  left: -340px; /* メニューのwidth + padding */
-  width: 300px; /* メニューのwidth */
+  left: -340px;
+  width: 300px;
   height: 100%;
   padding: 20px;
   transition: left .5s, right .5s; /* アニメーション */
-  // background-color: rgba(86, 86, 86, .7);
-  background-color: white;
+  background-color: #333;
 }
 
 .toggle {
@@ -38,7 +70,6 @@ a {
   display: none;
 }
 
-/* :checked 擬似クラスを使って、#openがチェック状態になった時に、#menuが「right: 0;」になります。 */
 #open:checked + #menu {
   left: 0;
 }
