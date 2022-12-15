@@ -127,7 +127,7 @@ class ItinerariesController < ApplicationController
 
   private
 
-  # The seach engine method is using pgsearch gem. To edit the query setting go to the Product Model.
+  # The seach engine method is using pgsearch gem. To edit the query setting go to the Product Model..
   def search_engine(seek, address)
     products = []
     if seek != "" && address != ""
