@@ -59,7 +59,7 @@
           <ul data-itinerary-show-target="listProducts" data-action="change->itinerary-show#getRouteForCycling">
             <% @itinerary.products.each do |product| %>
               <li style="list-style-type: none;" data-itinerary-show-target="product" data-type="product">
-                <div class="card-product m-3">
+                <div id="itinerary-cards" class="card-product m-3">
                   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                   <div class="card-product-infos">
                     <h2><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
