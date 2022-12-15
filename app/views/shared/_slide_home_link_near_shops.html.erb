@@ -1,6 +1,6 @@
 
-<div class="mt-2 mb-2" style="text-align:center; background-color: #FFE066; height: 40px; width:100%;">
-  <h3 style="color:black">Shops near you</h3>
+<div class="mt-2 mb-2" style="text-align:center; background-color: #333; height: 40px; width:100%;">
+  <h3 style="font-weight:bold; color:white">Shops near you</h3>
 </div>
 
 
@@ -10,12 +10,16 @@
   <h5 style="text-align:center " class="mt-4 mb-4"> Sorry... no shops around your current address at the moment..</h5>
 <% else %>
   <% @shops.each do |shop| %>
-  <div class="mb-2 d-flex">
-     <img style="width:120px; height:120px" src="https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/Oxxo-3.jpg" alt="">
-     <div class="">
-      <%= shop.name %>
-      <%= shop.address %>
+    <%= link_to business_path(shop) do  %>
+    <div class="mt-2 d-flex" style="border-bottom: solid 2px black">
+     <%= cl_image_tag shop.photos[0].key, height: 120, width: 120, crop: :fill %>
+     <div class="home-business-detail" >
+      <h3><%= shop.name %></h3>
+      <p><%= shop.address %></p>
+      <p><%= shop.opening_time %></p>
      </div>
-  </div>
+    </div>
+    <% end %>
+
   <% end %>
 <% end %>
