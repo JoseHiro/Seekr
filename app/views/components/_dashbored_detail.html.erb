@@ -1,0 +1,33 @@
+<% if @itinerary.nil?  %>
+
+  <div class="d-flex flex-row justify-content-between align-items-center">
+    <p class="choose-itinerary-btn-message">You don't have any current itinerary</p>
+    <%= link_to "Choose current itinerary", "my_itineraries", class: "shiny choose-itinerary-btn btn btn-light ms-4 mb-3" %>
+  </div>
+
+<% else %>
+
+  <div class="d-flex flex-column w-75">
+    <h3 style="color:white; text-align: center;" class="mt-3">Tracking: <%= @itinerary.name %></h3>
+    <br>
+    <div class="d-flex flex-row justify-content-between align-items-center">
+
+      <div class="d-flex flex-column justify-content-center">
+        <h3><i style="color:#FFF2BF" class="ms-1 fa-solid fa-cart-shopping"></i></h3>
+        <p style="text-align:center"><%= pluralize(@itinerary.products.count, "item") %> </p>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h3><i style="color:#FFF2BF" class="ms-1 fa-solid fa-location-dot"></i></h3>
+        <p style="text-align:center"><%= pluralize(@stops, "place") %></p>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h3><i style="color:#FFF2BF" class="fa-solid fa-calendar-days"></i></h3>
+        <p style="text-align:center"><%= @date %> </p>
+      </div>
+      
+    </div>
+    <%= link_to "See details", my_itineraries_path(@itinerary), class: "see-itinerary-btn shiny btn btn-light mb-4" %>
+  </div>
+<% end %>
