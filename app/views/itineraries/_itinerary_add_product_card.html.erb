@@ -10,14 +10,14 @@
           <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
           <div class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom:-1px;">
-              <h5><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" %product.price.round %></h5>
+              <h5><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" % product.price.round %></h5>
               <% if product.availability  %>
                 <span class="badge bg-success badge-pill badge-success">Available</span>
               <% else %>
                 <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
               <% end %>
             </div>
-            <p style="margin-bottom:-2px;"><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between([current_user.location.latitude, current_user.location.longitude], [@product.latitude, @product.longitude])%>km</p>
+            <p style="margin-bottom:-2px;"><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  "%.2f" % Geocoder::Calculations.distance_between([current_user.location.latitude, current_user.location.longitude], [product.latitude, product.longitude])%>km</p>
             <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>
             <div style="margin-top: 5px; margin-bottom: 10px">
               <%= link_to "See up close!", product_show_path(product), class: "blue-btn"%>
