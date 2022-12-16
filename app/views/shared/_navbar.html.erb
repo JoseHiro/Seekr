@@ -1,11 +1,9 @@
 <div class="d-flex landing-navbar navbar navbar-expand-sm navbar-light navbar-lewagon" style=" background-color:#2997D8;">
   <%= link_to "/", class: "navbar-brand" do %>
       <h1 style="font-weight: bold; color:white; margin-left: 2vw;" >Seekr</h1>
-  <% end %>
-
 
   <%= render "shared/signed_in_PC_navbar_search" %>
-
+  
   <% if user_signed_in? %>
     <div class="humberger-nav">
       <label class="toggle" for="open">

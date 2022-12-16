@@ -1,10 +1,5 @@
-<div style="background-color: #2997D8;" class="d-flex justify-content-center">
-  <div class="landing-header-container" style="text-align:center">
-    <div>
-    <h2 style=" font-weight: bold; color:white; margin-top:130px ">Find anything on the highstreet</h2>
-
-      <div class="" style=" width: 400px;">
-         <%= simple_form_for :filters, url: products_path, method: :get do |f| %>
+  <div style="" class="blue" id="sign-in-search-engine">
+      <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
         <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
         <div class="nav-search" style="border-radius: 15px" >
           <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
@@ -13,8 +8,4 @@
           <% end %>
         </div>
       <% end %>
-      </div>
     </div>
-    <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671059995/pibr2jpoptvwzj6zpauk.png" class="iphone-image ms-4 mt-4">
-  </div>
-</div>
