@@ -1,8 +1,8 @@
-<% if @display_navbar_logic  %>
+<% if ((user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))) || controller_name == "products")  %>
   <div style="text-align:center">
     <div class="sign-in-search-engine-pc-tablet">
       <!-- The following form displays if adding more products -->
-      <% if @display_adding_products_logic %>
+      <% if ((controller_name == "itineraries" && action_name == "add_products") || controller_name == "products" && action_name=="list_all" ) %>
         <%= simple_form_for :filters, method: :get do |f| %>
           <div class="d-flex">
             <%= f.input :seek, input_html: {class: "seek-search"}, placeholder: 'Categories, product name..', label: false %>

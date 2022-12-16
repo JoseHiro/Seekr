@@ -6,6 +6,8 @@ class PagesController < ApplicationController
         @itinerary = current_user.current_itinerary
         @stops = @itinerary.nil? ? 0 : trip_stops(@itinerary)
         @date = date_of_itinerary(@itinerary)
+        @display_adding_products_logic = ((controller_name == "itineraries" && action_name == "add_products") || controller_name == "products" && action_name=="list_all" )
+        @display_navbar_logic = ((user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))) || controller_name == "products")
     end
     @products = Product.all.last(4)
   end
