@@ -1,5 +1,3 @@
-<%@user_location = request.location%>
-
 <div id="show-container" style="width: 100vw; background-color:white;">
   <div class="d-flex justify-content-around">
 
@@ -74,7 +72,7 @@
               <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn",  style: "background-color:red !important;"%>
             </div>
              <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>
@@ -118,7 +116,7 @@
           <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= "%.2f" % @product.price.round%></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
-          <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
+          <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between([current_user.location.latitude, current_user.location.longitude], [@product.latitude, @product.longitude])%>km</p>
           <p><i class="fa-solid fa-clock"></i> <%= @product.business.opening_time.strftime("%H:%M")%> - <%= @product.business.closing_time.strftime("%H:%M")%><p>
         </div>
       </div>
@@ -136,7 +134,7 @@
               <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn", style: "background-color:red !important;" %>
             </div>
             <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>

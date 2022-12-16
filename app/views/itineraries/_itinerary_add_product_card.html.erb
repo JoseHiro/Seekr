@@ -17,7 +17,7 @@
                 <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
               <% end %>
             </div>
-            <p style="margin-bottom:-2px;"><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
+            <p style="margin-bottom:-2px;"><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between([current_user.location.latitude, current_user.location.longitude], [@product.latitude, @product.longitude])%>km</p>
             <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>
             <div style="margin-top: 5px; margin-bottom: 10px">
               <%= link_to "See up close!", product_show_path(product), class: "blue-btn"%>
