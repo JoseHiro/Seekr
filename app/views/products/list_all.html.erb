@@ -11,13 +11,17 @@
   <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw">
       <% @products.each do |product| %>
         <div class="card" style="width: 20rem; height: 36rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-              <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+              <% if product.photos[0]!=nil %>
+                <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+              <%else%>
+                <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="" style="height: 300px; width: 319px;">
+              <% end %>
               <div class="card-body">
                 <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
                 <div class="d-flex ">
                   <div class=" align-items-center">
                     <div class="" style="margin-bottom: -10px">
-                      <h4><span><i class="fa-solid fa-tag"></i></span> £<%= "%.2f" % product.price.round %></h4>
+                      <h4><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" % product.price.round %></h4>
                       <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
                     </div>
                     <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>

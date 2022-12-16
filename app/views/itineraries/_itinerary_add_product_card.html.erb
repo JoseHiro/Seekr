@@ -1,17 +1,26 @@
 <div data-controller="itinerary-add-products">
-      <div class="card m-3" style="width: 18rem;" data-itinerary-add-products-target="productCard" id="<%= product.id %>" >
+      <div class="card m-3" style="width: 20rem;" data-itinerary-add-products-target="productCard" id="<%= product.id %>" >
         <input type="hidden" data-itinerary-add-products-target="itineraryId" value="<%= itinerary.id %>">
-        <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="Card image cap">
+        <% if product.photos[0]!=nil %>
+          <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+        <%else%>
+          <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="" style="height: 300px; width: 319px;">
+        <% end %>
         <div class="card-body">
           <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
           <div class="d-flex flex-column">
-            <div class="d-flex flex-row justify-content-between align-items-center">
-              <h5><span><i class="fa-solid fa-tag"></i></span> <%= product.price %>€ </h5>
+            <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom:-1px;">
+              <h5><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" %product.price.round %></h5>
               <% if product.availability  %>
                 <span class="badge bg-success badge-pill badge-success">Available</span>
               <% else %>
                 <span class="badge bg-warning badge-pill badge-success">Out of stock</span>
               <% end %>
+            </div>
+            <p style="margin-bottom:-2px;"><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
+            <p style="margin-bottom:-2px;"><i class="fa-solid fa-clock"></i> <%= product.business.opening_time.strftime("%H:%M")%> - <%= product.business.closing_time.strftime("%H:%M")%><p>
+            <div style="margin-top: 5px; margin-bottom: 10px">
+              <%= link_to "See up close!", product_show_path(product), class: "blue-btn"%>
             </div>
               <% if itinerary.has?(product)  %>
                 <%= simple_form_for itinerary, method: "DELETE",data: {action: "submit->itinerary-add-products#deleteProduct", itinerary_add_products_target:"removeForm"} do |f| %>
@@ -19,7 +28,7 @@
                 <% end %>
               <% else %>
                 <%= simple_form_for itinerary, method: "POST",data: {action: "submit->itinerary-add-products#addProduct", itinerary_add_products_target:"addForm"} do |f| %>
-                <%= f.submit "Add product", class:"btn btn-dark" %>
+                <%= f.submit "Add product+", class:"btn btn-dark", style:"background-color: #2997D8; border: #2997D8;" %>
                 <% end %>
               <% end %>
             <div>
