@@ -45,8 +45,10 @@
   line-height: 40px;
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  background-color: #FFE066;
+  color: black;
+  padding-bottom:5px;
+  background-color: #C0C0C0;
+  // #FFE066
   cursor: pointer;
   overflow: hidden;
 }
@@ -84,9 +86,25 @@
   display:none;
 }
 
+.choose-itinerary-btn {
+  height:50px;
+}
+
+.see-itinerary-btn {
+  height:50px;
+}
+
 @media screen and (max-width: 480px){
   .signed-in-search-glass-container {
 
+  }
+
+  .choose-itinerary-btn-message {
+    display: none;
+  }
+
+  .choose-itinerary-btn {
+    width:220px;
   }
 
   .signed-in-search-glass {
@@ -127,6 +145,8 @@
   .sign-in-search-engine {
     display: none;
   }
+
+
 }
 
 @media screen and (min-width: 960px) {
@@ -145,6 +165,8 @@
 
   .user-signed-in-sidebar {
   }
+
+
 
 
 }
