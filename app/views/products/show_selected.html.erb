@@ -1,5 +1,4 @@
 <%@user_location = request.location%>
-
 <div id="show-container" style="width: 100vw; background-color:white;">
   <div class="d-flex justify-content-around">
 
@@ -85,29 +84,23 @@
         <span class="visually-hidden">Next</span>
       </button>
 
-      <div id="wide-buttons" style="margin-top: 10px; margin-left: -4.5px; margin-bottom: 10px;">
+      <div id="wide-buttons" style="margin-top: 10px; margin-left: -4.5px; margin-bottom: 50px;">
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex aligin-items-center flex-wrap">
             <div class="m-2">
-              <%= link_to "Go back to products!", business_products_path(@product.business), class: "blue-btn"%>
+              <%= link_to "Go back to products!", business_products_path(@business), class: "blue-btn"%>
             </div>
             <div class="m-2">
-<<<<<<< HEAD
-              <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
-=======
-              <%= link_to "Edit this product!", edit_business_product_path( @product.business, @product), class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
-            <div class="m-2">
-              <%= link_to "Delete", business_product_path( @product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
->>>>>>> 9e74ea2c7b754a2ed66edbd40f0869094b17a038
-            </div>
-            <div class="m-2">
+             <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>
             </div>
           </div>
+
         <% elsif current_user %>
           <div class="d-flex align-items-center flex-wrap">
             <div class="m-2">
@@ -138,12 +131,12 @@
 
   <div id=info-container-picture-business-product-show class="d-flex justify-content-center pt-3" style= "width: 100vw; background-color: white">
     <div class="" style=" width: 95vw; ">
-      <div class="m-2 d-flex justify-content" style="bottom: 0; right: 0">
+      <div class="m-2" style="bottom: 0; right: 0">
         <div class="mt-1">
           <h2 style="font-weight: bold"><%=@product.name%></h2>
-           <p style="font-weight: bold"><i class="fa-solid fa-shop"></i> Sold by: <%=@product.business.name%></p>
+          <p style="font-weight: bold"><i class="fa-solid fa-shop"></i> Sold by: <%=@product.business.name%></p>
           <hr>
-          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= "%.2f" % @product.price.round %></h2>
+          <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= "%.2f" % @product.price.round%></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
           <p><i class="fa-solid fa-circle-question"></i> Category :<%= @product.category %></p>
           <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%=  Geocoder::Calculations.distance_between(@user_location, [@product.latitude, @product.longitude])%></p>
@@ -156,22 +149,21 @@
       </div>
       <div id="narrow-buttons">
         <% if current_user && current_user == @product.business.owner %>
-          <div class="d-flex aligin-items-center flex-wrap">
+          <div class="d-flex align-items-center flex-wrap">
             <div class="m-2">
-              <%= link_to "Go back to products!", business_products_path(@product.business), class: "blue-btn"%>
+              <%= link_to "Go back to products!", business_products_path(@business), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
             <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>
             </div>
           </div>
-
-        <% elsif current_user %>
+        <% elsif current_user%>
           <div class="d-flex align-items-center flex-wrap">
             <div class="m-2">
               <%= link_to "Add to my itinerary + ", create_itinerary_path(@product, itinerary: {name: "My itinerary #{current_user.saved_itineraries.all.count + 1}", status: false}), class: "blue-btn" %>
@@ -187,17 +179,16 @@
             </div>
           </div>
         <% else %>
-            <div class="m-1">
-              <%= link_to "Login to add this item to your itinerary", new_user_registration_path, class: "blue-btn"%>
-            </div>
-            <div class="m-2">
+          <div class="m-3">
+            <%= link_to "Login to add this item to your itinerary", new_user_registration_path, class: "blue-btn"%>
+          </div>
+          <div class="m-">
               <%= link_to "Back", :back, class: "blue-btn" %>
             </div>
-          </div>
         <% end %>
         <hr>
         </div>
-        <div id="show-map" class="map" style="width: 100%; height: 30vh; border-radius-button: 10px; margin-bottom: 5vh;"
+         <div id="show-map" class="map" style="width: 100%; height: 30vh; border-radius-button: 10px; margin-bottom: 5vh;"
           data-controller="map-show"
           data-map-show-markers-value="<%= @markers.to_json %>"
           data-map-show-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
