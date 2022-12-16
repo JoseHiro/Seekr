@@ -15,15 +15,18 @@
       <div class="carousel-inner" style="height: 35vh;" >
 
         <div class="carousel-item active" style="height: 35vh;  width: 100vw;">
+
           <% if @photos[0]!=nil %>
             <%= cl_image_tag @photos[0].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
           <%else%>
             <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
           <% end %>
+
           <div class="container">
             <div class="carousel-caption text-start">
             </div>
           </div>
+
         </div>
 
         <div class="carousel-item" style="height: 35vh">
@@ -32,47 +35,59 @@
           <%else%>
             <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
           <% end %>
+
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
+
         </div>
 
         <div class="carousel-item" style="height: 35vh">
+
           <% if @photos[2]!=nil %>
             <%= cl_image_tag @photos[2].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
           <%else%>
             <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
           <% end %>
+
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
           </div>
+
         </div>
 
         <div class="carousel-item" style="height: 35vh">
+
           <% if @photos[3]!=nil %>
             <%= cl_image_tag @photos[3].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
           <%else%>
             <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
           <% end %>
+
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
           </div>
+
         </div>
 
         <div class="carousel-item" style="height: 35vh">
+
           <% if @photos[4]!=nil %>
             <%= cl_image_tag @photos[4].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
           <%else%>
             <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
           <% end %>
+
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
           </div>
+
         </div>
+
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -130,11 +145,15 @@
   </div>
 
   <div id=info-container-picture-business-product-show class="d-flex justify-content-center pt-3" style= "width: 100vw; background-color: white">
+
     <div class="" style=" width: 95vw; ">
+
       <div class="m-2 d-flex justify-content" style="bottom: 0; right: 0">
+
         <div class="mt-1">
+
           <h2 style="font-weight: bold"><%=@product.name%></h2>
-           <p style="font-weight: bold"><i class="fa-solid fa-shop"></i> Sold by: <%=@product.business.name%></p>
+          <p style="font-weight: bold"><i class="fa-solid fa-shop"></i> Sold by: <%=@product.business.name%></p>
           <hr>
           <h2 style="margin-left: 5px; margin-top: 5px;" ><i class="fa-solid fa-tag"></i> Price: £<%= "%.2f" % @product.price.round %></h2>
           <p><i class="fa-solid fa-star"></i> Brand: <%= @product.brand%></p>
@@ -189,7 +208,7 @@
           </div>
         <% end %>
         <hr>
-        </div>
+      </div>
         <div id="show-map" class="map" style="width: 100%; height: 30vh; border-radius-button: 10px; margin-bottom: 5vh;"
           data-controller="map-show"
           data-map-show-markers-value="<%= @markers.to_json %>"
