@@ -135,7 +135,7 @@
           <p><i class="fa-solid fa-address-book"></i> <%= @business.address %></p>
           <p><i class="fa-solid fa-door-open"></i> <%= @business.opening_time.strftime("%H:%M") %></p>
           <p><i class="fa-solid fa-door-closed"></i> <%= @business.closing_time.strftime("%H:%M") %></p>
-          <p><i class="fa-solid fa-compass-drafting"></i> <%= Geocoder::Calculations.distance_between(@user_location, [@business.latitude, @business.longitude])%></p>
+          <p><i class="fa-solid fa-compass-drafting"></i> <%=  Geocoder::Calculations.distance_between([current_user.location.latitude, current_user.location.longitude], [@product.latitude, @product.longitude])%>km</p>
         </div>
 
       </div>
