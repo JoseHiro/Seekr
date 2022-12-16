@@ -7,8 +7,10 @@
 </div>
 
 
+<h2 class="m-4"><%= pluralize(@counter, "Result")%></h2>
 <div class="d-flex justify-content-center container" style="background-color: white; height: 100%; width: 100vw">
   <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw">
+    <% if @counter > 0  %>
       <% @products.each do |product| %>
         <div class="card" style="width: 20rem; height: 36rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
               <% if product.photos[0]!=nil %>
@@ -41,5 +43,15 @@
               </div>
             </div>
       <% end %>
+    <% else %>
+        <div class="container d-flex justify-content-center" style="height: 50vh">
+            <div class="align-self-center d-flex flex-column align-items-center justify-content-center">
+              <h2><i class="fa-solid fa-hand-point-up"></i></h2>
+            <div class= "d-flex flex-row align-items-center">
+              <h3 class="mb-4" style="text-align:center">No products found, search for more above</h3>
+            </div>
+          </div>
+        </div>
+    <% end %>
   </div>
 </div>

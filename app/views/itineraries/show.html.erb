@@ -30,10 +30,10 @@
         </div>
          <div class="d-flex flex-wrap flex-row justify-content-between align-items-center p-3">
             <div>
-            <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary" %>
+            <%= link_to "Add a customize stop", itinerary_stops_path(@itinerary), class: "btn btn-primary", style: "background-color:#2997D8 ; border-color:#2997D8 ;" %>
            </div>
             <div>
-            <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary" %>
+            <%= link_to "Add more products", add_products_path(@itinerary), class: "btn btn-primary", style: "background-color:#2997D8 ; border-color:#2997D8 ;" %>
            </div>
            <% if @itinerary.current%>
            <div>
@@ -41,11 +41,11 @@
             </div>
            <% elsif SavedItinerary.has_current?(current_user.itineraries)%>
            <div>
-              <%= link_to "Set as current", undo_and_set_as_current_path(@itinerary, itinerary: {current: true}), class: "btn btn-success", data: {turbo_method: :patch} %>
+              <%= link_to "Set as current", undo_and_set_as_current_path(@itinerary, itinerary: {current: true}), class: "btn btn-success", data: {turbo_method: :patch}, class: "btn btn-primary", style: "background-color:#2997D8 ; border-color:#2997D8 ;" %>
            </div>
            <% else %>
              <div>
-              <%= link_to "Set as current", set_as_current_path(@itinerary, itinerary: {current: true}), class: "btn btn-success", data: {turbo_method: :patch} %>
+              <%= link_to "Set as current", set_as_current_path(@itinerary, itinerary: {current: true}), data: {turbo_method: :patch}, class: "btn btn-primary ms-2 mb-4", style: "background-color:#2997D8 ; border-color:#2997D8 ;" %>
            </div>
            <% end %>
            <div>
@@ -76,7 +76,11 @@
             <% @itinerary.products.each do |product| %>
               <li style="list-style-type: none;" data-itinerary-show-target="product" data-type="product">
                 <div id="itinerary-cards" class="card-product m-3">
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <% if product.photos[0]!=nil %>
+                    <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+                  <%else%>
+                    <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="" style="height: 300px; width: 319px;">
+                  <% end %>
                   <div class="card-product-infos">
                     <h2 style="color:black"><%= "#{product.name} #{product.brand}" %> <a href="<%=business_product_path(product.business, product)%>"><span><i class="fa-solid fa-circle-info"></i> </span></a></h2>
                     <p style="color:black"><i class="fa-solid fa-location-dot"></i> <%= product.business.address %></p>
