@@ -35,7 +35,6 @@
           <% end %>
           <div class="card-body">
             <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
-            <p><i class="fa-solid fa-compass-drafting"></i> Distance: <%= Geocoder::Calculations.distance_between(@user_location, [product.latitude, product.longitude]) %></p>
             <div class="d-flex ">
               <div class=" align-items-center">
                 <h5><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" % product.price.round %></h5>
