@@ -34,6 +34,8 @@ class ItinerariesController < ApplicationController
 
   def add_more_products
     @itinerary = Itinerary.find(params[:id])
+    @display_adding_products_logic = ((controller_name == "itineraries" && action_name == "add_products") || controller_name == "products" && action_name=="list_all" )
+    @display_navbar_logic = ((user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))) || controller_name == "products")
   end
 
   def update
@@ -87,6 +89,7 @@ class ItinerariesController < ApplicationController
   def mark_itinerary_as_completed
     @itinerary = Itinerary.find(params[:id])
     @itinerary.update(new_itinerary_params)
+    @itinerary.update(current: false)
     redirect_to history_itineraries_path
   end
 
