@@ -1,0 +1,20 @@
+<div class="location-detail">
+    <h2 class="dashbored-name mt-3 ms-2"><%= "Hi, #{current_user.first_name}" %></h2>
+    <% if current_user.location.presence == nil %>
+      <p>
+        <a class="current-location-btn btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Set location
+        </a>
+      </p>
+    <% else %>
+      <div class="mt-3 ms-2 d-flex">
+        <p><i class="home-current-location-pin me-2 fa-solid fa-location-pin"></i></p>
+        <p class="home-current-location"><%= current_user.location.address %></p>
+      </div>
+      <p>
+        <a class="current-location-btn btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Change
+        </a>
+      </p>
+    <% end %>
+</div>

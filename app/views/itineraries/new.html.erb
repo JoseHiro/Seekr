@@ -12,7 +12,11 @@
   <% if @counter > 0 %>
       <% @products.each do |product| %>
         <div class="card" style="width: 20rem; height: 36rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-              <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+              <% if product.photos[0]!=nil %>
+                <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+              <%else%>
+                <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="" style="height: 300px; width: 319px;">
+              <% end %>
               <div class="card-body">
                 <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
                 <div class="d-flex ">

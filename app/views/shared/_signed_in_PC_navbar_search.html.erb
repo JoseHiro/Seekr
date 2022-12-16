@@ -1,0 +1,33 @@
+<% if user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))  %>
+  <div style="text-align:center">
+    <div class="sign-in-search-engine-pc-tablet">
+      <!-- The following form displays if adding more products -->
+      <% if controller_name == "itineraries" && action_name == "add_products" %>
+        <%= simple_form_for :filters, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, input_html: {class: "seek-search"}, placeholder: 'Categories, product name..', label: false %>
+            <div class="d-flex" style="height: 37px;" >
+            <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+            <%= button_tag type: 'submit', class:"glass-btn btn me-5" do %>
+              <i style="" class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </div>
+          </div>
+        <% end %>
+      <!-- The following form will be displayed if creating a new itinerary instance -->
+      <% else %>
+        <%= simple_form_for :filters, url: new_itinerary_path, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :seek, input_html: {class: "seek-search"}, placeholder: 'Categories, product name..', label: false %>
+            <div class="d-flex" style="height: 37px;" >
+            <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+            <%= button_tag type: 'submit', class:"glass-btn btn me-5" do %>
+              <i style="" class="fa-solid navbar-search-glass fa-magnifying-glass"></i>
+            <% end %>
+          </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
