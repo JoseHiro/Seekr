@@ -12,8 +12,13 @@
       </div>
 
       <div class="carousel-inner" style="height: 35vh;" >
+
         <div class="carousel-item active" style="height: 35vh;  width: 100vw;">
-          <%= cl_image_tag @photos[0].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <% if @photos[0]!=nil %>
+            <%= cl_image_tag @photos[0].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
+          <% end %>
           <div class="container">
             <div class="carousel-caption text-start">
             </div>
@@ -21,7 +26,11 @@
         </div>
 
         <div class="carousel-item" style="height: 35vh">
-          <%= cl_image_tag @photos[1].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l" , preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <% if @photos[1]!=nil %>
+            <%= cl_image_tag @photos[1].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
+          <% end %>
           <div class="container">
             <div class="carousel-caption">
             </div>
@@ -29,7 +38,11 @@
         </div>
 
         <div class="carousel-item" style="height: 35vh">
-          <%= cl_image_tag @photos[2].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l"  , preserveAspectRatio: "xMidYMid slice", focusable: "false"%>
+          <% if @photos[2]!=nil %>
+            <%= cl_image_tag @photos[2].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
+          <% end %>
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
@@ -37,7 +50,11 @@
         </div>
 
         <div class="carousel-item" style="height: 35vh">
-          <%= cl_image_tag @photos[3].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <% if @photos[3]!=nil %>
+            <%= cl_image_tag @photos[3].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
+          <% end %>
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
@@ -45,7 +62,11 @@
         </div>
 
         <div class="carousel-item" style="height: 35vh">
-          <%= cl_image_tag @photos[4].key, height: 600, width: 600, crop: :fill, class:"bd-placeholder-img c-image-l" , preserveAspectRatio: "xMidYMid slice", focusable: "false"%>
+          <% if @photos[4]!=nil %>
+            <%= cl_image_tag @photos[4].key, height: 800, width: 800, crop: :fill, class:"bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="">
+          <% end %>
           <div class="container">
             <div class="carousel-caption text-end">
             </div>
@@ -158,10 +179,10 @@
             </div>
           </div>
         <% else %>
-          <div class="m-1">
+          <div class="m-3">
             <%= link_to "Login to add this item to your itinerary", new_user_registration_path, class: "blue-btn"%>
           </div>
-          <div class="m-2">
+          <div class="m-">
               <%= link_to "Back", :back, class: "blue-btn" %>
             </div>
         <% end %>
