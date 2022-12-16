@@ -24,7 +24,7 @@
           <% if business.photos.attached?%>
             <%= cl_image_tag business.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
           <% else %>
-           <img src="https://www.fintelgaseluce.it/wp-content/uploads/2015/07/FEG-facebook-placeholder_shop.png" style="height: 300; width: 300;"/>
+            <img src="https://www.fintelgaseluce.it/wp-content/uploads/2015/07/FEG-facebook-placeholder_shop.png" style="height: 300px; width: 319px;"/>
           <% end %>
           <div class="card-body">
             <h4 class="card-text"> <%= business.name %></h4>

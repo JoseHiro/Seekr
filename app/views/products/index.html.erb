@@ -28,12 +28,16 @@
     <div class="d-flex flex-wrap container" style="margin-left: 1vw; margin-right: 1vw; background-color: white; height: 100%; width: 100vw;">
       <% @products.each do |product| %>
         <div class="card" style="width: 20rem; height: 30rem; margin: 4vh auto; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-          <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <% if product.photos[0]!=nil %>
+            <%= cl_image_tag product.photos[0].key, height: 300, width: 300, crop: :fill, class:"card-img-top bd-placeholder-img c-image-l", preserveAspectRatio: "xMidYMid slice", focusable: "false" %>
+          <%else%>
+            <img src="https://res.cloudinary.com/dicqfpbyc/image/upload/v1671166248/j1v91gw4pkbelj5wfaq4.png" alt="" style="height: 300px; width: 319px;">
+          <% end %>
           <div class="card-body">
             <h4 class="card-text"><%= product.brand %>, <%= product.name %></h4>
             <div class="d-flex ">
               <div class=" align-items-center">
-                <h5><span><i class="fa-solid fa-tag"></i></span> £<%= "%.2f" % product.price.round %></h5>
+                <h5><span><i class="fa-solid fa-tag"></i></span> $<%= "%.2f" % product.price.round %></h5>
                 <% if product.availability  %>
                   <span class="badge bg-success badge-pill badge-success">In stock</span>
                 <% else %>
