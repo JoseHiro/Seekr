@@ -68,13 +68,13 @@
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex aligin-items-center flex-wrap">
             <div class="m-2">
-              <%= link_to "Go back to products!", business_products_path(@business), class: "blue-btn"%>
+              <%= link_to "Go back to products!", business_products_path(@product.business), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
              <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>
@@ -131,13 +131,13 @@
         <% if current_user && current_user == @product.business.owner %>
           <div class="d-flex align-items-center flex-wrap">
             <div class="m-2">
-              <%= link_to "Go back to products!", business_products_path(@business), class: "blue-btn"%>
+              <%= link_to "Go back to products!", business_products_path(@product.business), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Edit this product!", edit_business_product_path(@business, @product), class: "blue-btn"%>
+              <%= link_to "Edit this product!", edit_business_product_path(@product.business, @product), class: "blue-btn"%>
             </div>
             <div class="m-2">
-              <%= link_to "Delete", business_product_path(@business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
+              <%= link_to "Delete", business_product_path(@product.business, @product), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},  class: "blue-btn"%>
             </div>
             <div class="m-2">
               <%= link_to "Back", :back, class: "blue-btn" %>
