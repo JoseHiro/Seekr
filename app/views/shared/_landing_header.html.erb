@@ -8,8 +8,8 @@
         <%= f.input :seek, placeholder: 'Categories, product name..', label: false,  class:"seek-search" %>
         <div class="nav-search" style="border-radius: 15px" >
           <%= f.input :address, label: false, input_html: {data: {address_autocomplete_target: "address"}, class: "mapboxgl-ctrl-geocoder--input d-none"}, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-          <%= button_tag type: 'submit', class:"signed-in-search-glass-container btn" do %>
-            <i class="fa-solid signed-in-search-glass fa-magnifying-glass"></i>
+          <%= button_tag type: 'submit', class:"signed-out-search-glass-container btn" do %>
+            <i class="fa-solid signed-out-search-glass fa-magnifying-glass"></i>
           <% end %>
         </div>
       <% end %>

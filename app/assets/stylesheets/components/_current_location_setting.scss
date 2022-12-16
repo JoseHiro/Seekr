@@ -46,6 +46,13 @@
     width:50px;
   }
 
+  .signed-out-search-glass-container {
+    position: relative;
+    left:180px;
+    bottom:50px;
+    z-index:40;
+  }
+
   // .dashbored-name-address {
   //   width:400px;
   // }
@@ -100,6 +107,13 @@
   .home-current-location {
     margin-top: 10px;
     width:300px;
+  }
+
+  .signed-out-search-glass-container {
+    position: relative;
+    left:180px;
+    bottom:50px;
+    z-index:40;
   }
 
 }

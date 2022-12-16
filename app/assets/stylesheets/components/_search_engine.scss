@@ -10,9 +10,7 @@
 
 
 @media screen and (max-width: 480px){
-  // .seek-search {
-  //   border-radius: 150px !important;
-  // }
+
 
   .sign-in-search-engine-pc-tablet {
     display: none;
@@ -21,6 +19,10 @@
   .mapboxgl-ctrl-geocoder--input {
     border-radius: 15px;
   }
+
+  // .mapboxgl-ctrl-geocoder {
+  //   width: 390px;
+  // }
 
 }
 
