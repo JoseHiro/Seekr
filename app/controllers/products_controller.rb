@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
     query = search_engine(seek, address)
     @products = query[0]
     @counter = query[1]
+    @display_adding_products_logic = ((controller_name == "itineraries" && action_name == "add_products") || controller_name == "products" && action_name=="list_all" )
+    @display_navbar_logic = ((user_signed_in? && (controller_name == "pages" || (controller_name == "itineraries" && (action_name == "new" || action_name == "add_products") ))) || controller_name == "products")
   end
 
   def show_selected
